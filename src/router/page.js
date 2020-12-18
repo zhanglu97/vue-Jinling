@@ -5,10 +5,12 @@ import QualityName from '@/page/mainContent/StandardManage/QualityName/Index' //
 import MaterialManage from '@/page/mainContent/StandardManage/MaterialManage/Index' //标准管理——物料管理
 import AddAccess from '@/page/mainContent/AccessApply/AddAccess/Index' //准入申请——新建申请
 import ApplyManage from '@/page/mainContent/AccessApply/ApplyManage/Index' //准入申请——申请管理
-import Audit from '@/page/mainContent/AuditManage/Audit/Index' //审计管理——审计
-import Supply from '@/page/mainContent/AuditManage/Supply/Index' //审计管理——供应商
-import AnnualPlan from '@/page/mainContent/AuditManage/AnnualPlan/Index' //审计管理——年度计划
-import QualityReview from '@/page/mainContent/AuditManage/QualityReview/Index' //审计管理——质量回顾
+import admit from '@/page/mainContent/AuditManage/admit/admit' //审计管理——准入审计
+import dynamic from '@/page/mainContent/AuditManage/dynamic/dynamic' //审计管理——动态审计
+import time from '@/page/mainContent/AuditManage/time/time' //审计管理——定时审计
+import Supply from '@/page/mainContent/Supplier/Supply/Index' //供应商管理——供应商
+import AnnualPlan from '@/page/mainContent/Supplier/AnnualPlan/Index' //供应商管理——年度计划
+import QualityReview from '@/page/mainContent/Supplier/QualityReview/Index' //供应商管理——质量回顾
 import Organization from '@/page/mainContent/System/Organization/Index' //系统管理——组织架构
 import User from '@/page/mainContent/System/User/Index' //系统管理——用户管理
 import Power from '@/page/mainContent/System/Power/Index' //系统管理——角色权限
@@ -61,10 +63,20 @@ export default [
         meta: {title: '申请管理'},
         component: ApplyManage
     }, {
-        path: 'Audit',
-        name: 'Audit',
-        meta: {title: '审计'},
-        component: Audit
+        path: 'admit',
+        name: 'admit',
+        meta: {title: '准入审计'},
+        component: admit
+    }, {
+        path: 'dynamic',
+        name: 'dynamic',
+        meta: {title: '动态审计'},
+        component: dynamic
+    }, {
+        path: 'time',
+        name: 'time',
+        meta: {title: '定时审计'},
+        component: time
     }, {
         path: 'Supply',
         name: 'Supply',

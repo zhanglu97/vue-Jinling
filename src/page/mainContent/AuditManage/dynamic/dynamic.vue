@@ -1,5 +1,10 @@
 <template>
 	<div class="dynamic">
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
+            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
+            动态审计
+            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
+        </h1>
 		<!-- table -->
 		<sys-table v-if="isShow"
 			:isMultipleSelection="false" 
@@ -111,4 +116,32 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/assets/style/SearchTop.scss";
+.dynamic {
+    h1 {
+        text-align: center;
+        color: #34bfc6;
+        font-size: 20px;
+        font-weight: normal;
+        position: relative;
+        width: 100px;
+        margin: 0 auto;
+        padding-bottom: 10px;
+        .line1 {
+            width: 30px;
+            height: 1px;
+            position: absolute;
+            left: -40px;
+            top: 14px;
+            background:  #34bfc6;
+        }
+        .line2 {
+            width: 30px;
+            height: 1px;
+            position: absolute;
+            right: -40px;
+            top: 14px;
+            background:  #34bfc6;
+        }
+    }
+}
 </style>

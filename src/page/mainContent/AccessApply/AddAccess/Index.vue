@@ -267,12 +267,7 @@ export default {
         },
         save() {
             this.isAdd = true
-            if( this.$store.state.isApply.state == 'edit' ) {
-                this.goBack ()
-            }else {
-                VM.$goPage = true;//允许页面跳转
-                history.pushState(null, null, document.URL);
-            }
+            this.goBack()
         },
         upLoad(e, index) {
             if(e.target.files.length) {
@@ -334,24 +329,18 @@ export default {
                 'tableData3': [ ...this.tableData3 ],
             }
             console.log(submitData)
-            if( this.$store.state.isApply.state == 'edit' ) {
-                this.goBack ()
-            }else {
-                this.isAdd = true
-                this.$store.commit('SET_isApply', {'isAdd': true});
-                VM.$goPage = true;//允许页面跳转
-                history.pushState(null, null, document.URL);
-            }
+			this.goBack()
         },
         close() {
             this.isAdd = true
             this.$store.commit('SET_isApply', {});
-			this.goBack ()
+			this.goBack()
         },
         goBack () {//点击了返回页面
 			VM.$goPage = true;//允许页面跳转
 			window.history.back();
 			history.pushState(null, null, document.URL);
+            window.location.reload();
 		},
     },
     mounted() {

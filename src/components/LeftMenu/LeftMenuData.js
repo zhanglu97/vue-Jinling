@@ -22,9 +22,21 @@ export default [
         imgSrc: require('../../assets/img/icon4.png'),
         children: [ //子菜单
             {
-                name: 'Audit',//路由name
-                title: '审计',
+                name: 'admit',//路由name
+                title: '准入审计',
             }, {
+                name: 'dynamic',//路由name
+                title: '动态审计',
+            }, {
+                name: 'time',//路由name
+                title: '定时审计',
+            },
+        ]
+    }, {
+        title: '供应商管理',
+        imgSrc: require('../../assets/img/icon8.png'),
+        children: [ //子菜单
+            {
                 name: 'Supply',//路由name
                 title: '合格供应商',
             }, {
