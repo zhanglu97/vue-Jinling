@@ -2,7 +2,7 @@
 	<div class="Supply">
         <h1 :style="{color:$store.state.colorData.top.topBgColor}">
             <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            物料合格供应商
+            合格供应商
             <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
         </h1>
 		<!-- 头部input搜索 -->
@@ -44,8 +44,14 @@
 			:tableData="tableData" 
 			:tableLoading="tableLoading" 
 			:tableHeader="tableHeader" 
-			:scopeWidth="100"
+			:scopeWidth="100" :filterTag="true"
 		>
+			<template slot-scope="tag" slot="tag">
+				<el-tag type="success" v-if="tag.row.data9 == '有效'">{{ tag.row.data9 }}</el-tag>
+				<el-tag type="danger" v-if="tag.row.data9 == '已过期'">{{ tag.row.data9 }}</el-tag>
+				<el-tag type="warning" v-if="tag.row.data9 == '即将过期'">{{ tag.row.data9 }}</el-tag>
+			</template>
+
 			<template slot-scope="scope" slot="operate">
 				<el-button @click="goDetail(scope.row)" type="text" size="small">查看</el-button>
 			</template>
@@ -125,7 +131,6 @@ export default {
 					{ columnValue: "data6", columnName: "类别", width: 80 },
 					{ columnValue: "data7", columnName: "供应商", width: 200 },
 					{ columnValue: "data8", columnName: "状态", width: 100 },
-					{ columnValue: "data9", columnName: "资质时效", width: 100 },
 				];
 				this.tableData = JSON.parse(JSON.stringify(this.tableData));
 				this.tableLoading = false;

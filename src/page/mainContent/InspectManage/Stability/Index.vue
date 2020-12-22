@@ -7,7 +7,7 @@
         </h1>
         <!-- 头部搜索 -->
         <div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100%) !important">
+            <div class="search_list" style="width: calc(100% - 100px) !important">
                 <div class="input_flex">
                     <el-select clearable v-model="searchData1" placeholder="物料类别">
                         <el-option label="原料" value="原料"></el-option>
@@ -45,6 +45,9 @@
                     <span class="zll-search-reset" @click="searchReset()">重置</span>
                 </div>
             </div>
+            <div class="addNew" style="width: 100px !important">
+                <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建考察</span>
+            </div>
 		</div>
         <!-- table -->
         <sys-table  
@@ -59,12 +62,12 @@
             </template>
         </sys-table>
         
-        <!-- 新建管理用户弹框 -->
+        <!-- 新建弹框 -->
         <div class="zll-dialog">
-            <popout title="稳定性考察" :visible.sync="addDialog" v-if="addDialog" >
+            <popout :title="'稳定性考察 · ' + title" :visible.sync="addDialog" v-if="addDialog" class="QC">
                 <Add ref="add" slot="content" @addForm="getFormData"></Add>
                 <template slot="bottom">
-                    <p class="zll-botton" @click="()=>{this.$refs.add.setFormData('addForm')}">提 交</p>
+                    <p class="zll-botton" @click="()=>{this.$refs.add.setFormData('addForm')}">开始考察</p>
                 </template>
             </popout>
         </div> 
@@ -76,6 +79,7 @@
     export default {
         data(){
             return {
+                title: '',
                 tableLoading:true, //table刷新
                 searchData1: '',
                 searchData2: '',
@@ -107,7 +111,7 @@
                     tableNum10: '36',//合格月
                 }],
                 tableHeader:[],
-                addDialog: false, //用户弹框
+                addDialog: false, //弹框
             }
         },
         methods: {
@@ -134,8 +138,13 @@
                 console.log(data)
                 this.addDialog = false
             },
-            edit(val){ //编辑
+            add() {
+                this.title = '新建'
                 this.addDialog = true
+            },
+            edit(val){ //考察
+                this.addDialog = true
+                this.title = '考察'
             },
             searchReset() { //重置搜索
                 this.searchData1 = "";

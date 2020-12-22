@@ -1,8 +1,8 @@
 <template>
-	<div class="QualityReview">
+	<div class="QualitStandard">
         <h1 :style="{color:$store.state.colorData.top.topBgColor}">
             <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            质量回顾
+            质量管理
             <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
         </h1>
 		<!-- 头部input搜索 -->
@@ -23,7 +23,7 @@
                 </div>
             </div>
 			<div class="addNew" style="width: 150px !important">
-				<span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建质量回顾</span>
+				<span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建质量标准</span>
 			</div>
 		</div>
 		<!-- table -->
@@ -36,13 +36,13 @@
 		>
 			<template slot-scope="scope" slot="operate">
 				<el-button @click="goDetail(scope.row)" type="text" size="small">查看</el-button>
-				<el-button @click="edit(scope.row)" type="text" size="small">编辑</el-button>
+				<el-button @click="edit(scope.row)" type="text" size="small">修订</el-button>
 			</template>
 		</sys-table>
 
-		<!-- 新建质量回顾弹框 -->
+		<!-- 新建质量标准弹框 -->
 		<div class="zll-dialog">
-			<popout :title="'年度供应商质量检验结果回顾分析表 · ' + title" :visible.sync="addDialog" v-if="addDialog">
+			<popout :title="'质量标准 · ' + title" :visible.sync="addDialog" v-if="addDialog">
 				<Add ref="add" slot="content" :titleTxt="title" @addForm="getFormData"></Add>
 				<template slot="bottom">
 					<p class="zll-botton" v-if="title != '查看'" @click="()=>{this.$refs.add.setFormData('addForm')}">提 交</p>
@@ -123,7 +123,7 @@ export default {
 		},
 		edit(row) {
 			this.addDialog = true;
-			this.title = "编辑";
+			this.title = "修订";
 		},
 		searchReset() {//重置搜索
 			this.searchData1 = "";
@@ -142,7 +142,7 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/assets/style/SearchTop.scss";
-.QualityReview {
+.QualitStandard {
     h1 {
         text-align: center;
         color: #34bfc6;

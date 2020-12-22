@@ -15,6 +15,9 @@ export default [
             }, {
                 name: 'ApplyManage',//路由name
                 title: '申请管理',
+            }, {
+                name: 'BatchCheck',//路由name
+                title: '批次请检',
             },
         ]
     }, {
@@ -30,15 +33,6 @@ export default [
             }, {
                 name: 'time',//路由name
                 title: '定时审计',
-            },
-        ]
-    }, {
-        title: '供应商管理',
-        imgSrc: require('../../assets/img/icon8.png'),
-        children: [ //子菜单
-            {
-                name: 'Supply',//路由name
-                title: '合格供应商',
             }, {
                 name: 'AnnualPlan',//路由name
                 title: '年度计划',
@@ -48,10 +42,28 @@ export default [
             },
         ]
     }, {
-        title: '检验管理',
+        title: '供应商管理',
+        imgSrc: require('../../assets/img/icon8.png'),
+        children: [ //子菜单
+            {
+                name: 'Prospective',//路由name
+                title: '准供应商',
+            }, {
+                name: 'Supply',//路由name
+                title: '合格供应商',
+            }, {
+                name: 'QualificationAge',//路由name
+                title: '资质时效',
+            },
+        ]
+    }, {
+        title: '检验考察',
         imgSrc: require('../../assets/img/icon6.png'),
         children: [ //子菜单
             {
+                name: 'InspectionResult',//路由name
+                title: '检验结果',
+            }, {
                 name: 'QC',//路由name
                 title: 'QC检验',
             }, {
@@ -62,6 +74,10 @@ export default [
                 title: '留样考察',
             },
         ]
+    }, {
+        title: '审批',
+        name: 'Examine',//路由name
+        imgSrc: require('../../assets/img/icon9.png'),
     }, {
         title: '试剂管理',
         imgSrc: require('../../assets/img/icon7.png'),
@@ -88,18 +104,22 @@ export default [
         imgSrc: require('../../assets/img/icon2.png'),
         children: [ //子菜单
             {
-                name: 'QualitStandard',//路由name
-                title: '质量标准',
+                name: 'Send',//路由name
+                title: '信息发布',
             }, {
                 name: 'ParamSet',//路由name
                 title: '参数设定',
             }, {
-                name: 'QualityName',//路由name
-                title: '资质认证',
+                name: 'QualitStandard',//路由name
+                title: '质量标准',
             }, {
-                name: 'MaterialManage',//路由name
-                title: '物料管理',
-            }
+                name: 'QualityName',//路由name
+                title: '资质名称',
+            },
+            // {
+            //     name: 'MaterialManage',//路由name
+            //     title: '物料管理',
+            // }
         ]
     }, {
         title: '系统设置',

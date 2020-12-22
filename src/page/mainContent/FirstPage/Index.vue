@@ -61,7 +61,6 @@ export default {
         .message {
             padding: 20px 30px;    
             box-shadow: 0 0 10px #ccc;
-            margin: 0 20px;
         }
         .listNav {
             .item {

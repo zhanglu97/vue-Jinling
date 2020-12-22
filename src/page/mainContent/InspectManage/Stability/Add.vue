@@ -2,62 +2,100 @@
     <div class="addProject Stability">
         <div class="addForm zll-form">
             <el-form :model="addForm" :rules="rules" ref="addForm" class="demo-ruleForm">
-                <el-form-item class="formList" prop="addFormData10" label="类别：">
-                    <el-radio-group v-model="addForm.addFormData10">
-                        <el-radio label="产品">产品</el-radio>
-                        <el-radio label="原料">原料</el-radio>
-                        <el-radio label="辅料">辅料</el-radio>
-                        <el-radio label="包装材料">包装材料</el-radio>
-                    </el-radio-group>
-                </el-form-item>
                 <el-row :gutter="20">
                     <el-col :span="12">
-                        <el-form-item class="formList" prop="addFormData1" label="产品名称：">
-                            <el-input clearable class="input_right" placeholder="请输入产品名称" v-model="addForm.addFormData1"></el-input>
+                        <el-form-item class="formList" prop="addFormData1" label="样品类别：">
+                            <el-select clearable class="input_right" placeholder="请选择样品类别" v-model="addForm.addFormData1">
+                                <el-option label="原料" value="原料"></el-option>
+                                <el-option label="辅料" value="辅料"></el-option>
+                                <el-option label="包装材料" value="包装材料"></el-option>
+                                <el-option label="试剂" value="试剂"></el-option>
+                            </el-select>
                         </el-form-item>
-                        <el-form-item class="formList" prop="addFormData2" label="产品编码：">
-                            <el-input clearable class="input_right" placeholder="请输入产品编码" v-model="addForm.addFormData2"></el-input>
+                        <el-form-item class="formList" prop="addFormData2" label="样品名称：">
+                            <el-input clearable class="input_right" placeholder="请输入样品名称" v-model="addForm.addFormData2"></el-input>
                         </el-form-item>
-                        <el-form-item class="formList" prop="addFormData11" label="原料名称：" v-if="addForm.addFormData10 == '原料'">
-                            <el-input clearable class="input_right" placeholder="请输入原料名称" v-model="addForm.addFormData11"></el-input>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData3" label="包装规格：">
-                            <el-input clearable class="input_right" placeholder="请输入包装规格" v-model="addForm.addFormData3"></el-input>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData4" label="批次号：">
-                            <el-input clearable class="input_right" placeholder="请输入批次号" v-model="addForm.addFormData4"></el-input>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData5" label="生产日期：">
-                            <el-date-picker type="date" placeholder="请选择生产日期" value-format="yyyy-MM-dd" v-model="addForm.addFormData5"></el-date-picker>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData6" label="有效期：">
-                            <el-date-picker type="date" placeholder="请选择有效期" value-format="yyyy-MM-dd" v-model="addForm.addFormData6"></el-date-picker>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData7" label="贮存条件：">
-                            <el-input clearable class="input_right" placeholder="请输入贮存条件" v-model="addForm.addFormData7"></el-input>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData8" label="收样日期：">
-                            <el-date-picker type="date" placeholder="请选择收样日期" value-format="yyyy-MM-dd" v-model="addForm.addFormData8"></el-date-picker>
-                        </el-form-item>
-                        <el-form-item class="formList" prop="addFormData9" label="收样人：">
-                            <el-input clearable class="input_right" placeholder="请输入收样人" v-model="addForm.addFormData9"></el-input>
+                        <el-form-item class="formList" prop="addFormData3" label="考察批次：">
+                            <el-select clearable class="input_right" placeholder="请选择考察批次" v-model="addForm.addFormData3">
+                                <el-option label="1" value="1"></el-option>
+                                <el-option label="2" value="2"></el-option>
+                                <el-option label="3" value="3"></el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="6">
-                        <p class="type-nav">阶段</p>
-                        <div class="type-nav" v-for="(item, index) in addForm.addFormData12" :key="index">
-                            <span>{{ item.stage }}</span>
-                            <el-checkbox v-model="item.isCheck"></el-checkbox>
-                        </div>
-                        <p class="zll-botton allin" @click="allIn()">全选</p>
-                    </el-col>
-                    <el-col :span="6">
-                        <p class="type-nav">考察日期</p>
-                        <div class="type-nav" v-for="(item, index) in addForm.addFormData12" :key="index">
-                            <span>{{ item.data }}</span>
-                        </div>
+                    <el-col :span="12">
+                        <el-form-item class="formList"></el-form-item>
+                        <el-form-item class="formList" prop="addFormData4" label="包装规格：">
+                            <el-input clearable class="input_right" placeholder="请输入包装规格" v-model="addForm.addFormData4"></el-input>
+                        </el-form-item>
+                        <el-form-item class="formList" prop="addFormData5" label="批取样数：">
+                            <el-input clearable class="input_right" placeholder="请输入包装规格" v-model="addForm.addFormData5"></el-input>
+                        </el-form-item>
                     </el-col>
                 </el-row>
+                <div class="tableList">
+                    <table border="1">
+                        <tr class="add_Table" v-for="(item, index) in tableData"  :key="index">
+                            <td width="100">{{ index + 1 }}</td>
+                            <td><el-input clearable v-model="item.data" placeholder="请顺序输入批次号"></el-input></td>
+                        </tr>
+                    </table>
+                </div>
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <el-form-item class="formList" prop="addFormData6" label="考察类型：">
+                            <el-select clearable class="input_right" placeholder="请选择考察类型" v-model="addForm.addFormData6">
+                                <el-option label="1" value="1"></el-option>
+                                <el-option label="2" value="2"></el-option>
+                                <el-option label="3" value="3"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item class="formList isimg" prop="addFormData7" label="贮存条件：">
+                            <img src="@/assets/img/wendu.png" class="img-s">
+                            <el-input clearable class="input_right" placeholder="请输入温度" v-model="addForm.addFormData7"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item class="formList" prop="addFormData8" label="贮存位置：">
+                            <el-input clearable class="input_right" placeholder="请输入贮存位置" v-model="addForm.addFormData8"></el-input>
+                        </el-form-item>
+                        <el-form-item class="formList isimg shidu" prop="addFormData10" label="">
+                            <img src="@/assets/img/shidu.png" class="img-s">
+                            <el-input clearable class="input_right" placeholder="请输入湿度" v-model="addForm.addFormData10"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-form-item class="formList" prop="addFormData9" label="包装密封：">
+                    <el-input clearable class="input_right" placeholder="请输入包装密封" v-model="addForm.addFormData9"></el-input>
+                </el-form-item>
+                <div class="tableList">
+                    <span class="search_left">考察项目：</span>
+                    <table border="1">
+                        <tr>
+                            <th width="50"></th><th>项目名称</th><th>质量标准</th><th>考察结果</th>
+                        </tr>
+                        <tr class="add_Table" v-for="(item, index) in tableData2"  :key="index">
+                            <td width="50">
+                                <span class="checkStyle" @click="checkList(index)">
+                                    <i class="el-icon-check" v-show="item.list"></i>
+                                    <i class="no-check" v-show="!item.list"></i>
+                                </span>
+                            </td>
+                            <td><el-input clearable v-model="item.table1" placeholder=""></el-input></td>
+                            <td><el-input clearable v-model="item.table2" placeholder=""></el-input></td>
+                            <td><el-input clearable v-model="item.table3" placeholder=""></el-input></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="kaocha">
+                    <span class="search_left">考察时间：</span>
+                    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="CheckAll">全选</el-checkbox>
+                    <el-checkbox-group v-model="addForm.addFormData13">
+                        <el-checkbox v-for="(item, index) in addForm.addFormData12" :key="index" :label="item">
+                            {{ item }}
+                        </el-checkbox>
+                    </el-checkbox-group>
+                </div>                    
             </el-form>
         </div>
     </div>
@@ -66,7 +104,8 @@
 export default {
     data(){
         return {
-            isAll: false,
+            isIndeterminate: true,
+            checkAll: false,
             addForm: {
                 addFormData1: '',
                 addFormData2: '',
@@ -78,65 +117,54 @@ export default {
                 addFormData8: '',
                 addFormData9: '',
                 addFormData10: '',
-                addFormData11: '',
-                addFormData12: [
-                    { stage: '1个月', isCheck: false, data: '2020-01-01', },
-                    { stage: '2个月', isCheck: false, data: '2020-02-01', },
-                    { stage: '3个月', isCheck: false, data: '2020-03-01', },
-                    { stage: '6个月', isCheck: false, data: '2020-06-01', },
-                    { stage: '12个月', isCheck: false, data: '2020-12-01', },
-                    { stage: '18个月', isCheck: false, data: '2021-06-01', },
-                    { stage: '24个月', isCheck: false, data: '2021-12-01', },
-                    { stage: '36个月', isCheck: false, data: '2022-12-01', },
-                ],
+                addFormData12: ['1个月','2个月', '3个月','6个月', '12个月','18个月','24个月','36个月', ],
+                addFormData13: []
             },
+            tableData: [{ data: '' }, { data: '' }],
+            tableData2: [
+                { table1:'性状', table2: '', table3: '' },
+                { table1:'溶出度', table2: '', table3: '' },
+                { table1:'含量测定', table2: '', table3: '' },
+                { table1:'黏度', table2: '', table3: '' },
+            ],
             rules: {
                 addFormData1:[
-                    { required: true, message: '请输入产品名称', trigger: 'blur' },
+                    { required: true, message: '请选择样品类别', trigger: 'change' },
                 ],
                 addFormData2:[
-                    { required: true, message: '请输入产品编码', trigger: 'blur' },
+                    { required: true, message: '请输入样品名称', trigger: 'blur' },
                 ],
                 addFormData3:[
-                    { required: true, message: '请输入包装规格', trigger: 'blur' },
+                    { required: true, message: '请选择考察批次', trigger: 'blur' },
                 ],
                 addFormData4:[
-                    { required: true, message: '请输入批次号', trigger: 'blur' },
+                    { required: true, message: '请输入包装规格', trigger: 'blur' },
                 ],
                 addFormData5:[
-                    { required: true, message: '请选择生产日期', trigger: 'change' },
+                    { required: true, message: '请输入包装规格', trigger: 'blur' },
                 ],
                 addFormData6:[
-                    { required: true, message: '请选择有效期', trigger: 'change' },
+                    { required: true, message: '请选择考察类型', trigger: 'change' },
                 ],
                 addFormData7:[
-                    { required: true, message: '请输入贮存位置', trigger: 'blur' },
+                    { required: true, message: '请输入温度', trigger: 'blur' },
                 ],
                 addFormData8:[
-                    { required: true, message: '请选择收样日期', trigger: 'change' },
+                    { required: true, message: '请输入贮存位置', trigger: 'blur' },
                 ],
                 addFormData9:[
-                    { required: true, message: '请输入收样人', trigger: 'blur' },
+                    { required: true, message: '请输入包装密封', trigger: 'blur' },
                 ],
                 addFormData10:[
-                    { required: true, message: '请选择类别', trigger: 'change' },
-                ],
-                addFormData11:[
-                    { required: true, message: '请输入原料名称', trigger: 'blur' },
+                    { required: true, message: '请输入湿度', trigger: 'blur' },
                 ],
             },
         }
     },
     methods: {
-        allIn() {
-            this.isAll = !this.isAll
-            for(var i = 0; i < this.addForm.addFormData12.length ;i++) {
-                if( !this.isAll ) {
-                    this.addForm.addFormData12[i].isCheck = false
-                }else {
-                    this.addForm.addFormData12[i].isCheck = true
-                }
-            }
+        CheckAll(val) {
+            this.addForm.addFormData13 = val ? this.addForm.addFormData12 : [];
+            this.isIndeterminate = false;
         },
         setFormData(formName){
             this.$refs[formName].validate((valid) => {
@@ -157,12 +185,19 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/style/dialog.scss";
-.type-nav {
-    text-align: center;
-    height: 35px;
-    line-height: 35px;
-    span {
-        margin-right: 10px;
+.Stability {
+    .tableList {
+        margin: 15px 0;
+        padding: 0;
+    }
+    .isimg {
+        .img-s {
+            float: left;
+            width: 30px;
+        }
+        .input_right {
+            width: calc(100% - 30px);
+        }
     }
 }
 </style>

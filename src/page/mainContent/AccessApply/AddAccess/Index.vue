@@ -7,7 +7,15 @@
             </div>
         </div>
         <div class="page" v-if="!isAdd">
-            <h1>金陵药业供应商物料 · <span>准入申请</span></h1>
+            <h1 :style="{color:$store.state.colorData.top.topBgColor}">
+                新供应商物料准入申请 · <span>{{ type }}</span>
+                <div class="top">
+                    <p class="zll-botton goback" @click="close()" >返 回</p>
+                    <p class="zll-botton save" @click="save()">保 存</p>
+                    <p class="zll-botton reject" @click="submit()">提 交</p>
+                    <div class="clearBoth"></div>
+                </div>
+            </h1>
             <div class="Search_Top_Input isLeft">
                 <div class="search_list" style="width: 100% !important">
                     <div class="input_flex">
@@ -77,7 +85,13 @@
                         <table border="1" class="mainTable">
                             <tr>
                                 <td class="column">企业名称</td>
-                                <td colspan="3"><el-input clearable v-model="tableData2.data1" placeholder="" :disabled="isdisable"></el-input></td>
+                                <td><el-input clearable v-model="tableData2.data1" placeholder="" :disabled="isdisable"></el-input></td>
+                                <td class="column">供货性质</td>
+                                <td>
+                                    <el-select clearable v-model="tableData2.data10" placeholder="" :disabled="isdisable">
+                                        <el-option label="生产厂" value="生产厂"></el-option>
+                                    </el-select>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="column">统一代码</td>
@@ -148,13 +162,66 @@
                     </tr>
                 </table>
             </div>
-            <div class="bottom" v-show="!isdisable2">
-                <p class="zll-botton save" @click="save()">保 存</p>
-				<p class="zll-botton" @click="submit()">提 交</p>
-                <div class="clearBoth"></div>
+            <div class="add-table">
+                <div class="mine-add" v-show="!isdisable">
+                    <span class="el-icon-circle-plus" @click="addTable"></span>
+                    <span class="el-icon-remove-outline" @click.stop="deleteTable"></span>
+                </div>
+                <div class="tableList">
+                    <table border="1">
+                        <tr>
+                            <th width="50"></th><th >设备名称</th><th>品牌型号</th><th width="100">数量</th><th>生产厂家</th>
+                        </tr>
+                        <tr class="add_Table" v-for="(item, index) in tableData5"  :key="index">
+                            <td width="50">
+                                <span class="checkStyle" @click="checkList(index)" v-show="!isdisable">
+                                    <i class="el-icon-check" v-show="item.list"></i>
+                                    <i class="no-check" v-show="!item.list"></i>
+                                </span>
+                                <span class="checkStyle" v-show="isdisable">
+                                    <i class="no-check"></i>
+                                </span>
+                            </td>
+                            <td><el-input clearable v-model="item.table1" placeholder=""></el-input></td>
+                            <td><el-input clearable v-model="item.table2" placeholder=""></el-input></td>
+                            <td width="100"><el-input clearable v-model="item.table3" placeholder=""></el-input></td>
+                            <td><el-input clearable v-model="item.table4" placeholder=""></el-input></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="bottom one" v-show="isdisable2">
-				<p class="zll-botton" @click="close()" >确 定</p>
+            <div class="add-table">
+                <div class="mine-add" v-show="!isdisable">
+                    <span class="el-icon-circle-plus" @click="addTable2"></span>
+                    <span class="el-icon-remove-outline" @click.stop="deleteTable2"></span>
+                </div>
+                <div class="tableList">
+                    <table border="1">
+                        <tr>
+                            <th width="50"></th><th >仪器名称</th><th>品牌型号</th><th width="100">数量</th><th>生产厂家</th>
+                        </tr>
+                        <tr class="add_Table" v-for="(item, index) in tableData6"  :key="index">
+                            <td width="50">
+                                <span class="checkStyle" @click="checkList2(index)" v-show="!isdisable">
+                                    <i class="el-icon-check" v-show="item.list"></i>
+                                    <i class="no-check" v-show="!item.list"></i>
+                                </span>
+                                <span class="checkStyle" v-show="isdisable">
+                                    <i class="no-check"></i>
+                                </span>
+                            </td>
+                            <td><el-input clearable v-model="item.table1" placeholder=""></el-input></td>
+                            <td><el-input clearable v-model="item.table2" placeholder=""></el-input></td>
+                            <td width="100"><el-input clearable v-model="item.table3" placeholder=""></el-input></td>
+                            <td><el-input clearable v-model="item.table4" placeholder=""></el-input></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="bottom">
+				<p class="zll-botton goback" @click="close()" >返 回</p>
+                <p class="zll-botton save" @click="save()">保 存</p>
+				<p class="zll-botton reject" @click="submit()">提 交</p>
                 <div class="clearBoth"></div>
             </div>
         </div>
@@ -166,6 +233,7 @@ import { VM } from  '@/main'
 export default {
     data() {
         return {
+            type: '新建',
             isAdd: true,
             isdisable: false,
             isdisable2: false,
@@ -177,91 +245,74 @@ export default {
                 data4: '',
             },
             tableData1: {
-                data1: '',
-                data2: '',
-                data3: '',
-                data4: '',
-                data5: false,
+                data1: '', data2: '', data3: '', data4: '', data5: false,
             },
             tableData2: {
-                data1: '',
-                data2: '',
-                data3: '',
-                data4: '',
-                data5: '',
-                data6: '',
-                data7: '',
-                data8: '',
-                data9: '',
+                data1: '', data2: '', data3: '', data4: '', data5: '', data6: '', data7: '', data8: '', data9: '', data10: '',
             },
             tableData3: [
                 {
-                    name: '营业执照',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: '营业执照', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: '生产许可证',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: '生产许可证', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: '原料药登记号',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: '原料药登记号', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: 'ISO 证书',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: 'ISO 证书', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: 'GMP 证书',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: 'GMP 证书', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: '卫生许可证',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: '卫生许可证', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: '药监局等级信息',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: '药监局等级信息', number: '', date: '', bz: '', file: '', isChoose: false,
                 }, {
-                    name: '洁净级别证明',
-                    number: '',
-                    date: '',
-                    bz: '',
-                    file: '',
-                    isChoose: false,
+                    name: '洁净级别证明', number: '', date: '', bz: '', file: '', isChoose: false,
                 },
             ],
-            tableData4: {
-                data1: '',
-                data2: '',
-                data3: '',
-                data4: '',
-            },
+            tableData4: { data1: '', data2: '', data3: '', data4: '', },
+            tableData5: [
+                { list:false,table1: '',table2: '',table3: '',table4: '' },
+                { list:false,table1: '',table2: '',table3: '',table4: '' },
+            ],
+            tableData6: [
+                { list:false,table1: '',table2: '',table3: '',table4: '' },
+                { list:false,table1: '',table2: '',table3: '',table4: '' },
+            ]
         }
     },
     methods: {
+        addTable(){//增加table
+            this.tableData5.push({ list:false,table1: '',table2: '',table3: '',table4: '' })
+        },
+        checkList(index){
+            this.tableData5[index].list = !this.tableData5[index].list;
+        },
+        deleteTable(){//删除table
+            if(this.tableData5.length == 1){
+                this.$tableData5.warning('不能少于一列!');
+                return false
+            }else{
+                this.tableData5 = this.tableData5.filter(e => {
+                    return !e.list
+                })
+            }
+        },
+        addTable2(){//增加table
+            this.tableData6.push({ list:false,table1: '',table2: '',table3: '',table4: '' })
+        },
+        checkList2(index){
+            this.tableData6[index].list = !this.tableData6[index].list;
+        },
+        deleteTable2(){//删除table
+            if(this.tableData6.length == 1){
+                this.$tableData6.warning('不能少于一列!');
+                return false
+            }else{
+                this.tableData6 = this.tableData6.filter(e => {
+                    return !e.list
+                })
+            }
+        },
         goPage() {
             this.isAdd = false
         },
@@ -332,8 +383,6 @@ export default {
 			this.goBack()
         },
         close() {
-            this.isAdd = true
-            this.$store.commit('SET_isApply', {});
 			this.goBack()
         },
         goBack () {//点击了返回页面
@@ -358,9 +407,11 @@ export default {
             if( applyData.state == 'see' ) {
                 this.isdisable = true
                 this.isdisable2 = true
+                this.type = '查看'
             }else if( applyData.state == 'edit' ) {
                 this.isdisable = true
                 this.isdisable2 = false
+                this.type = '编辑'
             }
         }
     },

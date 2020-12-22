@@ -323,9 +323,15 @@ li{
         }
     }
 } 
+.shidu {
+    .el-form-item__content {
+        width: calc(100% - 42px);
+        float: right;
+    }
+}
 .Stability {
     .zll-form .el-form-item {
-        margin-bottom: 5px !important;
+        margin-bottom: 10px !important;
     }
 }
 //table样式
@@ -464,6 +470,9 @@ li{
         background-color: #fd6b6b;
         padding: 0;
         width: 60px;
+    }
+    &.goback {
+        background-color: #34bfc6;
     }
     &.void {
         background-color: #feba8b;
@@ -627,10 +636,32 @@ li{
         top: 14px;
         width: 24px;
     }
-  }
+}
+.jianxiang {
+    width: calc(100% - 72px) !important;
+    float: right !important;
+    .el-checkbox {
+        width: 100%;
+        margin-right: 0 !important;
+        .label {
+            width: 120px;
+            display: inline-block;
+        }
+    }
+}
+.kaocha {
+    .el-checkbox-group {
+        width: calc(100% - 72px) !important;
+        float: right !important;
+    }
+    .el-checkbox {
+        height: 35px;
+        line-height: 35px;
+    }
+}
 .Audit {
     .el-tabs__item {
-        width: 200px;
+        width: 150px;
         text-align: center;
     }
     .el-tabs__item.is-active {

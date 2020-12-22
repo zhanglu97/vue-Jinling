@@ -43,7 +43,7 @@
         
         <!-- 新建管理用户弹框 -->
         <div class="zll-dialog">
-            <popout :title="'留样考察 · ' + title" :visible.sync="addDialog" v-if="addDialog" >
+            <popout :title="'留样考察 · ' + title" :visible.sync="addDialog" v-if="addDialog" class="QC">
                 <Add ref="add" slot="content" :title="title" @addForm="getFormData"></Add>
                 <template slot="bottom">
                     <p class="zll-botton" @click="()=>{this.$refs.add.setFormData('addForm')}">提 交</p>

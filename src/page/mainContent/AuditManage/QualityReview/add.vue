@@ -1,6 +1,6 @@
 <template>
     <div class="addProject">
-        <h1>2020年度 供应商物料质量检验结果回顾分析表
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">2020年度 供应商物料质量检验结果回顾分析表
             <p>质量标准文件 SMP-QA-007-08</p>
         </h1>
         <div class="addForm zll-form">

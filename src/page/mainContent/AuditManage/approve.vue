@@ -1,7 +1,11 @@
 <template>
     <div class="AddAccess">
         <div class="page">
-            <h1>供应商物料准入申请审计</h1>
+            <h1>供应商物料准入申请审计
+                <div class="top top2">
+                    <p class="zll-botton goback" @click="close()" >返 回</p>
+                </div>
+            </h1>
             <div class="Search_Top_Input isLeft">
                 <div class="search_list" style="width: 100% !important">
                     <div class="input_flex">
@@ -71,7 +75,13 @@
                         <table border="1" class="mainTable">
                             <tr>
                                 <td class="column">企业名称</td>
-                                <td colspan="3"><el-input clearable v-model="tableData2.data1" placeholder="" :disabled="isdisable"></el-input></td>
+                                <td><el-input clearable v-model="tableData2.data1" placeholder="" :disabled="isdisable"></el-input></td>
+                                <td class="column">性质</td>
+                                <td>
+                                    <el-select clearable v-model="tableData2.data10" placeholder="" :disabled="isdisable">
+                                        <el-option label="生产厂" value="生产厂"></el-option>
+                                    </el-select>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="column">统一代码</td>
@@ -110,35 +120,41 @@
                     </el-col>
                 </el-row>
             </div>
+
+            <!-- 样品检验 -->
             <div class="add-table" v-if="isCheck">
                 <div class="tableList">
                     <table border="1">
                         <tr>
-                            <th >物料类别</th><th>物料编码</th><th>物料名称</th><th>等级</th>
+                            <th width="160">检验号</th><th width="200">检验结果</th><th>备注</th><th width="220">检验报告</th><th width="150">检验日期</th><th width="100">检验人</th>
                         </tr>
                         <tr class="add_Table">
-                            <td><el-input clearable v-model="tableData5.data1" placeholder=""></el-input></td>
-                            <td><el-input clearable v-model="tableData5.data2" placeholder=""></el-input></td>
+                            <td width="160"><el-input clearable v-model="tableData5.data1" placeholder=""></el-input></td>
+                            <td width="200"><el-input clearable v-model="tableData5.data2" placeholder=""></el-input></td>
                             <td><el-input clearable v-model="tableData5.data3" placeholder=""></el-input></td>
-                            <td><el-input clearable v-model="tableData5.data4" placeholder=""></el-input></td>
+                            <td width="220"><el-input clearable v-model="tableData5.data4" placeholder=""></el-input></td>
+                            <td width="150"><el-input clearable v-model="tableData5.data5" placeholder=""></el-input></td>
+                            <td width="100"><el-input clearable v-model="tableData5.data6" placeholder=""></el-input></td>
                         </tr>
                     </table>
                 </div>
             </div>
+
+            <!-- 证书表格 -->
             <div class="add-table">
                 <table border="1" class="mainTable">
                     <tr v-for="(item, index) in tableData3" :key="index">
                         <td class="column index">{{ index + 1 }}</td>
                         <td class="column name">{{ item.name }}</td>
                         <td width="200"><el-input clearable v-model="item.number" placeholder="证书编号" :disabled="isdisable"></el-input></td>
-                        <td width="200"><el-date-picker v-model="item.date" type="date" placeholder="有效期止" value-format="yyyy-MM-dd" :disabled="isdisable"></el-date-picker></td>
                         <td><el-input clearable v-model="item.bz" placeholder="备注" :disabled="isdisable"></el-input></td>
-                        <td width="100" style="position: relative">
+                        <td width="200"><el-date-picker v-model="item.date" type="date" placeholder="有效期止" value-format="yyyy-MM-dd" :disabled="isdisable"></el-date-picker></td>
+                        <td width="150" style="position: relative">
                             <input type="file" class="file" @change="upLoad($event,index)" :disabled="isdisable">
                             <p class="upLoad" v-show="!item.file">上传附件<i class="el-icon-paperclip"></i></p>
                             <p class="upLoad" v-show="item.file">{{ item.file }}</p>
                         </td>
-                        <td width="50"><el-checkbox v-model="item.isChoose" :disabled="isdisable"></el-checkbox></td>
+                        <td width="100"><el-checkbox v-model="item.isChoose" :disabled="isdisable"></el-checkbox></td>
                     </tr>
                 </table>
             </div>
@@ -170,101 +186,186 @@
                     </table>
                 </div>
             </div>
+
+            <!-- 非现场审计 -->
             <div class="add-table">
-                <div class="nav_scene">非现场审计</div>
-                <div class="nav_list">
+                <div class="nav_scene">
+                    <span class="circle"></span> 非现场审计 <span class="circle2"></span>
+                </div>
+                <div class="nav_list left">
                     <div class="input_flex">
+                        <span class="search_left">审计结果：</span>
                         <el-radio v-model="addData.data5" label="通过">通过</el-radio>
                         <el-radio v-model="addData.data5" label="驳回">驳回</el-radio>
+                        <div class="clearBoth"></div>
                     </div>
                     <div class="input_flex">
-                        <span class="search_left">审计：</span>
-                        <el-input class="search_right" clearable v-model="addData.data6" placeholder="请输入审计人"></el-input>
+                        <span class="search_left">审计意见：</span>
+                        <el-input class="search_right" clearable v-model="addData.data6" placeholder="请输入审计意见"></el-input>
+                        <div class="clearBoth"></div>
                     </div>
+                </div>
+                <div class="nav_list">
                     <div class="input_flex">
                         <span class="search_left">日期：</span>
                         <el-date-picker class="search_right" type="date" placeholder="请选择日期" value-format="yyyy-MM-dd" v-model="addData.data7"></el-date-picker>
-                    </div>
-                    <div class="clearBoth"></div>
-                </div>
-                <div class="nav_list">
-                    <div class="input_flex all">
-                        <span class="search_left">审计意见：</span>
-                        <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入审计意见"></el-input>
-                    </div>
-                    <div class="clearBoth"></div>
-                </div>
-            </div>
-            <div class="add-table">
-                <div class="nav_scene is">现场审计</div>
-                <div class="nav_list is">
-                    <div class="input_flex">
-                        <span class="search_left">组名：</span>
-                        <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入组名"></el-input>
                         <div class="clearBoth"></div>
                     </div>
                     <div class="input_flex">
-                        <span class="search_left">人数：</span>
-                        <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入人数"></el-input>
+                        <span class="search_left">审计人：</span>
+                        <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入审计人"></el-input>
                         <div class="clearBoth"></div>
-                    </div>
-                    <div class="input_flex">
-                        <span class="search_left">计划日期：</span>
-                        <el-date-picker class="search_right" type="date" placeholder="请选择计划日期" value-format="yyyy-MM-dd" v-model="addData.data7"></el-date-picker>
-                        <div class="clearBoth"></div>
-                    </div>
-                    <div class="input_flex">
-                        <span class="search_left">计划人：</span>
-                        <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入计划人"></el-input>
-                        <div class="clearBoth"></div>
-                    </div>
-                </div>
-                <div class="nav_list is table">
-                    <div class="tableList">
-                        <table border="1">
-                            <tr>
-                                <td class="dept">生产部</td>
-                                <td>
-                                    <p class="name">徐晓飞、刘浩</p>
-                                    <span class="el-icon-user-solid user"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="dept">质量部</td>
-                                <td>
-                                    <p class="name"></p>
-                                    <span class="el-icon-user-solid user"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="dept">采购部</td>
-                                <td>
-                                    <p class="name"></p>
-                                    <span class="el-icon-user-solid user"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="dept">总经办</td>
-                                <td>
-                                    <p class="name"></p>
-                                    <span class="el-icon-user-solid user"></span>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
                 <div class="submit-plan">
-                    <p class="zll-botton">提交计划</p>
+                    <p class="zll-botton reject">完 成</p>
                 </div>
                 <div class="clearBoth"></div>
             </div>
-            <div class="bottom" v-show="!isdisable">
-                <p class="zll-botton save" @click="save()">保 存</p>
-				<p class="zll-botton" @click="submit()">提 交</p>
-                <div class="clearBoth"></div>
+
+            <!-- 现场审计 -->
+            <div class="add-table">
+                <div class="nav_scene is">
+                    <span class="circle"></span> 现场审计 <span class="circle2"></span>
+                </div>
+                <div class="nav_body">
+                    <div class="tab">计划</div>
+                    <div class="nav_list is">
+                        <div class="input_flex">
+                            <span class="search_left">组名：</span>
+                            <el-input class="search_right" clearable v-model="addData.data9" placeholder="请输入组名"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">日期：</span>
+                            <el-date-picker class="search_right" type="date" placeholder="请选择计划日期" value-format="yyyy-MM-dd" v-model="addData.data10"></el-date-picker>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">地点：</span>
+                            <el-input class="search_right" clearable v-model="addData.data11" placeholder="请输入地点"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">计划人：</span>
+                            <el-input class="search_right" clearable v-model="addData.data12" placeholder="请输入计划人"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                    </div>
+                    <div class="nav_list is table">
+                        <div class="input_flex">
+                            <span class="search_left">人数：</span>
+                            <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入人数"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">负责人：</span>
+                            <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入负责人"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex tableList">
+                            <span class="search_left">组员：</span>
+                            <table border="1" class="search_right">
+                                <tr>
+                                    <td class="dept">生产部</td>
+                                    <td>
+                                        <p class="name">徐晓飞、刘浩</p>
+                                        <span class="el-icon-user-solid user"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="dept">质量部</td>
+                                    <td>
+                                        <p class="name"></p>
+                                        <span class="el-icon-user-solid user"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="submit-plan">
+                        <p class="zll-botton" @click="submit()">提交计划</p>
+                    </div>
+                    <div class="clearBoth"></div>
+                </div>
+                <div class="nav_body">
+                    <div class="tab tab2">现场审计</div>
+                    <div class="nav_list is">
+                        <div class="input_flex">
+                            <span class="search_left">日期：</span>
+                            <el-date-picker class="search_right" type="date" placeholder="请选择计划日期" value-format="yyyy-MM-dd" v-model="addData.data10"></el-date-picker>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">地点：</span>
+                            <el-input class="search_right" clearable v-model="addData.data11" placeholder="请输入地点"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">计划人：</span>
+                            <el-input class="search_right" clearable v-model="addData.data12" placeholder="请输入计划人"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                    </div>
+                    <div class="nav_list is table">
+                        <div class="input_flex">
+                            <span class="search_left">人数：</span>
+                            <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入人数"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex">
+                            <span class="search_left">负责人：</span>
+                            <el-input class="search_right" clearable v-model="addData.data8" placeholder="请输入负责人"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="input_flex tableList">
+                            <span class="search_left">组员：</span>
+                            <table border="1" class="search_right">
+                                <tr>
+                                    <td class="dept">生产部</td>
+                                    <td>
+                                        <p class="name">徐晓飞、刘浩</p>
+                                        <span class="el-icon-user-solid user"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="dept">质量部</td>
+                                    <td>
+                                        <p class="name"></p>
+                                        <span class="el-icon-user-solid user"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="nav_list is table shenji">
+                        <div class="input_flex tableList">
+                            <span class="search_left">现场审计文件：</span>
+                            <table border="1">
+                                <tr>
+                                    <th>文件名称</th><th>备注</th><th width="150">上传日期</th><th width="100">操作</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td width="150"></td>
+                                    <td width="100"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="nav_list is shenji">
+                        <div class="input_flex tableList">
+                            <span class="search_left">现场审计结论：</span>
+                            <el-input clearable v-model="addData.data8" placeholder="请输入现场审计结论"></el-input>
+                            <div class="clearBoth"></div>
+                        </div>
+                    </div>
+                    <div class="clearBoth"></div>
+                </div>
             </div>
-            <div class="bottom one" v-show="isdisable">
-				<p class="zll-botton" @click="close()" >确 定</p>
+            <div class="bottom one">
+                <p class="zll-botton reject" @click="submit()" >提交审批</p>
                 <div class="clearBoth"></div>
             </div>
         </div>
@@ -279,13 +380,13 @@ export default {
             isdisable: false,
             isCheck: false,
             addData: {
-                data1: '', data2: '', data3: '', data4: '', data5: '', data6: '', data7: '', data8: '',
+                data1: '', data2: '', data3: '', data4: '', data5: '', data6: '', data7: '', data8: '', data9: '', data10: '', data11: '', data12: '',
             },
             tableData1: {
                 data1: '', data2: '', data3: '', data4: '', data5: false,
             },
             tableData2: {
-                data1: '', data2: '', data3: '', data4: '', data5: '', data6: '', data7: '', data8: '', data9: '',
+                data1: '', data2: '', data3: '', data4: '', data5: '', data6: '', data7: '', data8: '', data9: '', data10: '',
             },
             tableData3: [
                 {
@@ -310,7 +411,7 @@ export default {
                 { list:false,table1: '',table2: '',table3: '',table4: '' },
             ],
             tableData5: {
-                data1: '', data2: '', data3: '', data4: '',
+                data1: '', data2: '', data3: '', data4: '',data5: '', data6: '',
             },
         }
     },
@@ -347,9 +448,6 @@ export default {
                     }
                 }
             }
-        },
-        save() {
-            this.$emit('applyApprove', true)
         },
         submit() {
             // if( !this.addData.data1 ){

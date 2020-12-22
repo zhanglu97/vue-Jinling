@@ -1,23 +1,25 @@
 <template>
 	<div class="Admit">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            准入审计
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
-		<!-- table -->
-		<sys-table v-if="isShow"
-			:isMultipleSelection="false" 
-			:tableData="tableData" 
-			:tableLoading="tableLoading" 
-			:tableHeader="tableHeader" 
-			:scopeWidth="150"
-		>
-			<template slot-scope="scope" slot="operate">
-				<el-button @click="goDetail(scope.row, 'see')" type="text" size="small" v-if="scope.row.data8 !== '待申请'">查看</el-button>
-				<el-button @click="goDetail(scope.row, 'edit')" type="text" size="small" v-if="scope.row.data8 !== '合格' && scope.row.data8 !== '驳回'">审批</el-button>
-			</template>
-		</sys-table>
+        <div v-if="isShow">
+            <h1 :style="{color:$store.state.colorData.top.topBgColor}">
+                <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
+                准入审计
+                <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
+            </h1>
+            <!-- table -->
+            <sys-table
+                :isMultipleSelection="false" 
+                :tableData="tableData" 
+                :tableLoading="tableLoading" 
+                :tableHeader="tableHeader" 
+                :scopeWidth="150"
+            >
+                <template slot-scope="scope" slot="operate">
+                    <el-button @click="goDetail(scope.row, 'see')" type="text" size="small" v-if="scope.row.data8 !== '待申请'">查看</el-button>
+                    <el-button @click="goDetail(scope.row, 'edit')" type="text" size="small" v-if="scope.row.data8 !== '合格' && scope.row.data8 !== '驳回'">审批</el-button>
+                </template>
+            </sys-table>
+        </div>
 
         <Approve v-if="!isShow" :detailData="detailData" @applyApprove="applyApprove"></Approve>
 	</div>

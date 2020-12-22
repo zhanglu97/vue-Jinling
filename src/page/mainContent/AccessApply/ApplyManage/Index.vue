@@ -2,7 +2,7 @@
 	<div class="ApplyManage">
         <h1 :style="{color:$store.state.colorData.top.topBgColor}">
             <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            准入申请一览
+            申请管理
             <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
         </h1>
 		<!-- 头部input搜索 -->

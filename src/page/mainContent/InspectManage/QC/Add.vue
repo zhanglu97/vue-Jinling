@@ -1,273 +1,161 @@
 <template>
-    <div class="addProject doPrint">
-        <div class="addForm zll-form printOrder-data">
-            <h2>金陵药业股份有限公司 · 南京金陵制药厂</h2>
-            <h1>检验报告书</h1>
-            <div>
-                <el-row>
+    <div class="addProject UserAdd">
+        <div class="addForm zll-form">
+            <el-form :model="addForm" :rules="rules" ref="addForm" class="demo-ruleForm">
+                <el-row :gutter="20">
                     <el-col :span="12">
-                        <div class="bottom_liet">
-                            <span class="left">检品名称：</span>
-                            <span class="right">琥珀酸亚铁片参比制剂</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">包装规格：</span>
-                            <span class="right">25片/板*4板/盒</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">包装方式：</span>
-                            <span class="right">铝塑泡罩</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">检验目的：</span>
-                            <span class="right">/</span>
-                        </div>
+                        <el-form-item class="formList" prop="addFormData1" label="请检部门：">
+                            <el-input clearable class="input_right" placeholder="请输入请检部门" v-model="addForm.addFormData1" :disabled="isdisabled"></el-input>
+                        </el-form-item>
+                        <el-form-item class="formList" prop="addFormData2" label="请检人：">
+                            <el-input clearable class="input_right" placeholder="请输入请检人" v-model="addForm.addFormData2" :disabled="isdisabled"></el-input>
+                        </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <div class="bottom_liet">
-                            <span class="left">请检部门：</span>
-                            <span class="right">技术中心</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">请检日期：</span>
-                            <span class="right">2020-01-01</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">入库批号：</span>
-                            <span class="right">AJC100</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">批量：</span>
-                            <span class="right">5000盒</span>
-                        </div>
+                        <el-form-item class="formList" prop="addFormData3" label="检验号：">
+                            <el-input clearable class="input_right" placeholder="请输入检验号" v-model="addForm.addFormData3" :disabled="isdisabled"></el-input>
+                        </el-form-item>
+                        <el-form-item class="formList" prop="addFormData4" label="请检日期：">
+                            <el-date-picker type="date" placeholder="请选择请检日期" value-format="yyyy-MM-dd" v-model="addForm.addFormData4" :disabled="isdisabled"></el-date-picker>
+                        </el-form-item>
                     </el-col>
                 </el-row>
-            </div>
-            <div style="margin: 20px 0">
-                <el-row>
-                    <div class="bottom_liet">
-                        <span class="left">检验依据：</span>
-                        <span class="right">琥珀酸亚铁片（一致性评价）质量标准</span>
-                    </div>
+                <el-form-item class="formList" prop="addFormData5" label="检验目的：">
+                    <el-input clearable class="input_right" placeholder="请输入检验目的" v-model="addForm.addFormData5" :disabled="isdisabled"></el-input>
+                </el-form-item>
+                <el-form-item class="formList" prop="addFormData6" label="检验依据：">
+                    <el-input clearable class="input_right" placeholder="请输入检验依据" v-model="addForm.addFormData6" :disabled="isdisabled"></el-input>
+                </el-form-item>
+                <el-row :gutter="20" style="margin-top: 40px">
                     <el-col :span="12">
-                        <div class="bottom_liet">
-                            <span class="left">检验号：</span>
-                            <span class="right"></span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">检验日期：</span>
-                            <span class="right">2002-09-11</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">抽检数量：</span>
-                            <span class="right">56片</span>
-                        </div>
+                        <el-form-item class="formList" prop="addFormData7" label="检验类别：">
+                            <el-select clearable class="input_right" placeholder="请选择检验类别" v-model="addForm.addFormData7" :disabled="isdisabled" @change="typeChange">
+                                <el-option label="入库批检" value="入库批检"></el-option>
+                                <el-option label="准入样检" value="准入样检"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item class="formList" prop="addFormData8" :label="istype ? '入库批号：' : '申请号：'">
+                            <el-input clearable class="input_right" :placeholder="istype ? '请输入入库批号' : '请输入申请号'" v-model="addForm.addFormData8" :disabled="isdisabled"></el-input>
+                        </el-form-item>
+                        <el-form-item class="formList" prop="addFormData9" label="包装规格：">
+                            <el-input clearable class="input_right" placeholder="请输入包装规格" v-model="addForm.addFormData9" :disabled="isdisabled"></el-input>
+                        </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <div class="bottom_liet">
-                            <span class="left">检验：</span>
-                            <span class="right">邱莎莎</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">复核：</span>
-                            <span class="right">张三</span>
-                        </div>
-                        <div class="bottom_liet">
-                            <span class="left">负责：</span>
-                            <span class="right">陈曦</span>
-                        </div>
+                        <el-form-item class="formList"></el-form-item>
+                        <el-form-item class="formList" prop="addFormData10" label="批量：" v-if="istype">
+                            <el-input clearable class="input_right" placeholder="请输入批量" v-model="addForm.addFormData10" :disabled="isdisabled"></el-input>
+                        </el-form-item>
+                        <el-form-item class="formList" v-else></el-form-item>
+                        <el-form-item class="formList" prop="addFormData11" label="抽检数量：">
+                            <el-input clearable class="input_right" placeholder="请输入抽检数量" v-model="addForm.addFormData11" :disabled="isdisabled"></el-input>
+                        </el-form-item>
                     </el-col>
                 </el-row>
-            </div>
-            <div class="tableList">
-                <table class="print_bottom">
-                    <tr>
-                        <th width="5%">序号</th>
-                        <th width="10%">检项</th>
-                        <th width="40%">质量标准</th>
-                        <th width="45%">检验结果</th>
-                    </tr>
-                    <tr>
-                        <td width="5%">1</td>
-                        <td width="10%">性状</td>
-                        <td width="40%">磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠磷酸钠</td>
-                        <td width="45%"></td>
-                    </tr>
-                    <tr>
-                        <td width="5%">2</td>
-                        <td width="10%">溶出度</td>
-                        <td width="40%"></td>
-                        <td width="45%"></td>
-                    </tr>
-                    <tr>
-                        <td width="5%">3</td>
-                        <td width="10%">高铁</td>
-                        <td width="40%">00.0%</td>
-                        <td width="45%">2.9%</td>
-                    </tr>
-                    <tr>
-                        <td width="5%">4</td>
-                        <td width="10%">琥珀酸</td>
-                        <td width="40%">00.0%</td>
-                        <td width="45%">2.9%</td>
-                    </tr>
-                    <tr>
-                        <td width="5%">5</td>
-                        <td width="10%">含量测定</td>
-                        <td width="40%">00.0%</td>
-                        <td width="45%">2.9%</td>
-                    </tr>
-                </table>
-                <p class="point_sin">李淼22020-01-01 15:00:00打印</p>
-            </div>
-            <div style="margin-top: 20px">
-                <el-row>
-                    <el-col :span="6">
-                        <div class="bottom_liet last">
-                            <span class="left">检验：</span>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="bottom_liet last">
-                            <span class="left">复核：</span>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="bottom_liet last">
-                            <span class="left">负责：</span>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="bottom_liet last">
-                            <span class="left">检验单位盖章</span>
-                        </div>
-                    </el-col>
-                </el-row>
-            </div>
+                <div class="formList"> 
+                    <span class="search_left">检项：</span>
+                    <el-checkbox-group  class="input_right jianxiang" v-model="addForm.addFormData13" :disabled="isdisabled">
+                        <el-checkbox v-for="(item, index) in addForm.addFormData12" :key="index" :label="item.label">
+                            <span class="label">{{ item.label }}</span>
+                            <span>{{ item.txt }}</span>
+                        </el-checkbox>
+                    </el-checkbox-group>
+                </div>
+            </el-form>
         </div>
-        <p class="zll-botton allin" @click="doPrint()">打 印</p>
     </div>
 </template>
 <script>
 export default {
+    props: ['title'],
     data(){
         return {
-            
+            isdisabled: false,
+            istype: true,
+            addForm: {
+                addFormData1: '',
+                addFormData2: '',
+                addFormData3: '',
+                addFormData4: '',
+                addFormData5: '',
+                addFormData6: '',
+                addFormData7: '',
+                addFormData8: '',
+                addFormData9: '',
+                addFormData10: '',
+                addFormData11: '',
+                addFormData13: [],
+                addFormData12: [
+                    { label:'性状', txt: '本品为白色' },
+                    { label:'溶出度', txt: '1小时，多组%/平均%' },
+                    { label:'含量测定', txt: '00.0%' },
+                    { label:'黏度', txt: '00.0%' },
+                ]
+            },
+            rules: {
+                addFormData1:[
+                    { required: true, message: '请输入请检部门', trigger: 'blur' },
+                ],
+                addFormData2:[
+                    { required: true, message: '请输入请检人', trigger: 'blur' },
+                ],
+                addFormData3:[
+                    { required: true, message: '请输入检验号', trigger: 'blur' },
+                ],
+                addFormData4:[
+                    { required: true, message: '请选择请检日期', trigger: 'change' },
+                ],
+                addFormData5:[
+                    { required: true, message: '请输入检验目的', trigger: 'blur' },
+                ],
+                addFormData6:[
+                    { required: true, message: '请输入检验依据', trigger: 'blur' },
+                ],
+                addFormData7:[
+                    { required: true, message: '请选择检验类别', trigger: 'change' },
+                ],
+                addFormData8:[
+                    { required: true, message: '请输入入库批号', trigger: 'blur' },
+                ],
+                addFormData9:[
+                    { required: true, message: '请输入包装规格', trigger: 'blur' },
+                ],
+                addFormData10:[
+                    { required: true, message: '请输入批量', trigger: 'blur' },
+                ],
+                addFormData11:[
+                    { required: true, message: '请输入抽检数量', trigger: 'blur' },
+                ],
+            },
         }
     },
     methods: {
-        doPrint() {
-            var newstr = document.getElementsByClassName("printOrder-data")[0].innerHTML;
-            var bdhtml = window.document.body.innerHTML;
-            window.document.body.innerHTML = newstr;
-            window.print();
-            window.document.body.innerHTML = bdhtml; // 最后还原页面
-            window.location.reload();
-
-            this.$emit('addForm',false)
+        typeChange(val) {
+            if( val == '入库批检' ) {
+                this.istype = true
+            } else {
+                this.istype = false
+            }
+        },
+        setFormData(formName){
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.$emit('addForm',this.addForm)
+                }else {
+                    return false
+                }
+            })
         },
     },
     mounted(){
-        
+        if( this.title == '查看') {
+            this.isdisabled = true
+        }
     },
     components: {
     }
 }
 </script>
 <style lang="scss" scoped>
-@import "@/assets/style/dialog.scss";
-@page {
-    size: auto; /* auto is the initial value */
-    margin: 0mm; /* this affects the margin in the printer settings */
-}
-.doPrint h2 {
-    text-align: center;
-    font-weight: 400;
-}
-.doPrint h1 {
-    text-align: center;    
-    margin: 20px 0;
-}
-.tableList {
-    padding: 15px;
-    margin-top: 0 !important;
-    .point_sin {
-        text-align: right;
-    }
-}
-.print_bottom {
-    table-layout: fixed;
-    th {
-        background: #ffffff !important;
-        color: #222 !important;
-        border: 1px solid #aaa !important;
-    }
-    td {
-        background: #ffffff !important;
-        border: 1px solid #aaa !important;
-        word-wrap:break-word;
-        overflow: auto !important;
-        text-overflow: clip !important;
-        white-space: normal !important;
-    }
-}
-.bottom_liet {
-    height: 26px;
-    line-height: 26px;
-    padding-left: 15px;
-    .left {
-        float: left;
-        text-align: center;
-        width: 60px;
-        text-align-last: justify;
-    }
-    .right {
-        width: calc(100% - 60px);
-        float: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding-left: 10px;
-    }
-    &.last {
-        .left {
-            width: 80px;
-            text-align-last: auto;
-            text-align: left;
-        }
-    }
-}
-</style>
-<style media="print">
-h2 {
-    text-align: center;
-    font-weight: 400;
-    padding-top: 20px;
-}
-h1 {
-    text-align: center;    
-    margin: 20px 0;
-}
-.tableList {
-    padding: 15px;
-}
-.tableList table {
-    text-align: center;
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-.tableList table th, td {
-    height: 35px;
-    line-height: 35px;
-    padding: 3px;
-}
-.print_bottom th {
-    background-color: #ffffff;-webkit-print-color-adjust: exact;
-    font-weight: normal;
-    border: 1px solid #aaa;
-}
-.print_bottom td {
-    border: 1px solid #aaa;word-wrap:break-word;
-}
+    @import "@/assets/style/dialog.scss";
 </style>

@@ -56,15 +56,26 @@
         >
             <template slot-scope="scope" slot="operate">
                 <el-button @click="edit(scope.row)" type="text" size="small" v-if="scope.row.tableNum8 == '待检'">检验</el-button>
-                <el-button @click="edit(scope.row)" type="text" size="small" v-if="scope.row.tableNum8 !== '待检'">查看</el-button>
-                <el-button type="text" size="small" v-if="scope.row.tableNum8 !== '待检'">报告</el-button>
+                <el-button @click="goDetail(scope.row)" type="text" size="small" v-if="scope.row.tableNum8 !== '待检'">查看</el-button>
+                <el-button @click="report(scope.row)" type="text" size="small" v-if="scope.row.tableNum8 !== '待检'">报告</el-button>
             </template>
         </sys-table>
         
-        <!-- 新建管理用户弹框 -->
+        <!-- 检验查看弹框 -->
         <div class="zll-dialog">
             <popout :title="'QC检验 · ' + title" :visible.sync="addDialog" v-if="addDialog" class="QC">
-                <Add ref="add" slot="content" @addForm="getFormData"></Add>
+                <Add ref="add" slot="content" :title="title" @addForm="getFormData"></Add>
+                <template slot="bottom">
+                    <p class="zll-botton" @click="()=>{this.$refs.add.setFormData('addForm')}" v-if="title !== '查看'">开始检验</p>
+                    <p class="zll-botton" @click="addDialog = false" v-if="title == '查看'">确 定</p>
+                </template>
+            </popout>
+        </div> 
+
+        <!-- 报告弹框 -->
+        <div class="zll-dialog">
+            <popout :title="'QC检验 · ' + title" :visible.sync="recordDialog" v-if="recordDialog" class="QC">
+                <Record ref="add" slot="content" @addForm="getFormData"></Record>
             </popout>
         </div> 
     </div>
@@ -72,6 +83,7 @@
 
 <script>
     import Add from './Add'
+    import Record from './record'
     export default {
         data(){
             return {
@@ -109,7 +121,8 @@
                     tableNum10: '2020-10-11',//检验日期
                 },],
                 tableHeader:[],
-                addDialog: false, //用户弹框
+                addDialog: false, //查看弹框
+                recordDialog: false, //报告弹框
             }
         },
         methods: {
@@ -137,9 +150,17 @@
                 console.log(data)
                 this.addDialog = false
             },
-            edit(val){ //编辑
+            edit(val){ //检验
                 this.addDialog = true
-                this.title = '编辑'
+                this.title = '检验'
+            },
+            goDetail() {//查看
+                this.addDialog = true
+                this.title = '查看'
+            },
+            report() {//报告
+                this.recordDialog = true
+                this.title = '报告'
             },
             searchReset() { //重置搜索
                 this.searchData1 = "";
@@ -155,7 +176,7 @@
             this.getTableList();//显示table
         },
         components: {
-            Add,
+            Add,Record
         }
     }
 </script>

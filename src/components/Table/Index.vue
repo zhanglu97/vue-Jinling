@@ -9,10 +9,24 @@
                 :summary-method="getSummaries"
             >
                 <el-table-column type="selection" width="50" v-if="isMultipleSelection"></el-table-column>
-                <el-table-column v-for="(item, index) in getTableHeader" :key="index" :show-overflow-tooltip="true"
-                    :prop="item.columnValue" :label="item.columnName" :sortable="item.isSortable"
-                    :width="item.width"></el-table-column>
-                 <el-table-column label="操作" :width="scopeWidth" fixed="right" align="center" v-if="isOperate">
+                <el-table-column v-for="(item, index) in getTableHeader" :key="index" 
+                    :show-overflow-tooltip="true"
+                    :prop="item.columnValue" 
+                    :label="item.columnName" 
+                    :sortable="item.isSortable" 
+                    :width="item.width"
+                ></el-table-column>
+
+                <el-table-column label="资质时效" :width="scopeWidth" v-if="filterTag">
+                    <template slot-scope="tag">
+                        <slot :index="tag.$index"
+                            :row="tag.row"
+                            name="tag">
+                        </slot>
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="操作" :width="scopeWidth" fixed="right" align="center" v-if="isOperate">
                     <template slot-scope="scope">
                         <slot :index="scope.$index"
                             :row="scope.row"
@@ -87,7 +101,11 @@
             isSortable: {//是否 排序
                 default: false,
                 type: Boolean,
-            }
+            },
+            filterTag: {//是否 tag
+                default: false,
+                type: Boolean,
+            },
         },
         data() {
             return {
@@ -130,7 +148,7 @@
                     }
                 }
                 if ( name == "data8") { //准入申请——申请管理——状态
-                    if (row.data8 == '待申请' || row.data8 == '驳回') {
+                    if (row.data8 == '待申请' || row.data8 == '驳回' || row.data8 == '未提交') {
                         color.color = "#e82626";
                     }
                     if (row.data8 == '合格') {
@@ -139,16 +157,13 @@
                 }
                 if ( name == "data9") { //审计——供应商——合格供应商
                     if (row.data9 == '有效') {
-                        color.backgroundColor = "#409EFF";
-                        color.color = "#ffffff";
+                        color.color = "#409EFF";
                     }
                     if (row.data9 == '已过期') {
-                        color.backgroundColor = "#e82626";
-                        color.color = "#ffffff";
+                        color.color = "#e82626";
                     }
                     if (row.data9 == '即将过期') {
-                        color.backgroundColor = "#E6A23C";
-                        color.color = "#ffffff";
+                        color.color = "#E6A23C";
                     }
                 }
                 return color;
