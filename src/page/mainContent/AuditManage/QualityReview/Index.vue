@@ -45,8 +45,8 @@
         <div class="tableList">
             <table border="1">
                 <tr>
-                    <td rowspan="2">检项</td>
-                    <td rowspan="2">标准</td>
+                    <td rowspan="2" class="color">检项</td>
+                    <td rowspan="2" class="color">标准</td>
                     <td>2019.08.11</td>
                     <td>2019.08.11</td>
                     <td>2019.08.11</td>
@@ -63,8 +63,8 @@
                     <td class="is">P191208033</td>
                 </tr>
                 <tr v-for="(item, index) in tableData" :key="index">
-                    <td>{{ item.data1 }}</td>
-                    <td>{{ item.data2 }}</td>
+                    <td class="color">{{ item.data1 }}</td>
+                    <td class="color">{{ item.data2 }}</td>
                     <td>{{ item.data3 }}</td>
                     <td>{{ item.data4 }}</td>
                     <td>{{ item.data5 }}</td>
@@ -83,7 +83,7 @@
                     <div class="botton">
                         <div>
                             <p class="zll-botton">截图</p>
-                            <p class="zll-botton">下载</p>
+                            <p class="zll-botton download">下载</p>
                         </div>
                     </div>
                 </el-col>
@@ -272,6 +272,9 @@ export default {
                 &.is {
                     background: #34BFC6;
                     color: #ffffff;
+                }
+                &.color {
+                    color: #888888;
                 }
             }
             tr {

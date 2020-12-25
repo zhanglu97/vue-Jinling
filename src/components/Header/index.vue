@@ -3,7 +3,7 @@
         <div class="Title_header" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}" >
             <img class="Roms" src="@/assets/img/Login_logo2.png" />
             <img class="Roms" src="@/assets/img/header_logo.png" />
-            <span class="splite">|</span> 供应商管理系统 · JSM
+            <span class="splite">|</span> 供 应 商 管 理 系 统 · JSM
         </div>
         
         <div class="time">

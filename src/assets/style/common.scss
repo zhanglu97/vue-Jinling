@@ -106,59 +106,77 @@ li{
         opacity: 1;
         i {
             filter: drop-shadow(#00C 0px 0);
-          }
+        }
     }
     .color1.el-menu {
         .el-menu-item.is-active {
-            color: #fff;
-            background: rgba(52, 191, 198, 0.5);
+            color: #34bfc6;
+            background: #fff;
+            .img_icon {
+                filter: drop-shadow(#34bfc6 1px 1px);
+            }
         }
     }
     .color2.el-menu {
         .el-menu-item.is-active {
-            color: #fff;
-            background: #1374c0;
+            color: #1374c0;
+            background: #fff;
+            .img_icon {
+                filter: drop-shadow(#1374c0 1px 1px);
+            }
         }
     }
     .color3.el-menu {
         .el-menu-item.is-active {
-            color: #fff;
-            background: #2fa7e0;
+            color: #2fa7e0;
+            background: #fff;
+            .img_icon {
+                filter: drop-shadow(#2fa7e0 1px 1px);
+            }
         }
     }
     .color4.el-menu {
         .el-menu-item.is-active {
-            color: #fff;
-            background: #009688;
+            color: #009688;
+            background: #fff;
+            .img_icon {
+                filter: drop-shadow(#009688 1px 1px);
+            }
         }
     }
     .color5.el-menu {
         .el-menu-item.is-active {
-            color: #fff;
-            background: #e6a23c;
+            color: #e6a23c;
+            background: #fff;
+            .img_icon {
+                filter: drop-shadow(#e6a23c 1px 1px);
+            }
         }
     }
     .color6.el-menu {
         .el-menu-item.is-active {
-            color: #fff;
-            background: #f56c6c;
+            color: #f56c6c;
+            background: #fff;
+            .img_icon {
+                filter: drop-shadow(#f56c6c 1px 1px);
+            }
         }
     }
 }
 .el-menu-item-group__title {
     padding: 0 !important;
 }
-.Menu-item .el-menu-item {
-    font-size: 14px;
-    &:hover {
-        // background: #297e8d;
-        color: #fff !important;
-    }
-    &.is-active {
-        color: #fff !important;
-        background: #297e8d;
-    }
-}
+// .Menu-item .el-menu-item {
+//     font-size: 14px;
+//     &:hover {
+//         // background: #297e8d;
+//         color: #fff !important;
+//     }
+//     &.is-active {
+//         color: #fff !important;
+//         background: #297e8d;
+//     }
+// }
 .el-menu-item, .el-submenu__title {
     height: 45px;
     line-height: 45px;
@@ -490,6 +508,9 @@ li{
     &.allin {
         background-color: #284358;
         width: 80px;
+    }
+    &.download {
+        background-color: #67C23A !important;
     }
 }
 .powerTable {
