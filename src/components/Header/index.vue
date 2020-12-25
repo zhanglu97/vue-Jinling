@@ -1,8 +1,13 @@
 <template>
     <div class="header" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}">
         <div class="Title_header" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}" >
-            <img class="Roms" src="@/assets/img/Login_logo2.png" />金陵药业
+            <img class="Roms" src="@/assets/img/Login_logo2.png" />
+            <img class="Roms" src="@/assets/img/header_logo.png" />
             <span class="splite">|</span> 供应商管理系统 · JSM
+        </div>
+        
+        <div class="time">
+            {{nowDate}} {{nowTime}}
         </div>
         <!-- 右侧按钮 -->
         <div class="header_user" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}">
@@ -81,6 +86,8 @@
                 addDialog: false,
                 resetDialog: false,
                 userInfo: '',
+                nowTime: new Date(),
+                nowDate: new Date(),
             }
         },
         methods: {
@@ -157,10 +164,27 @@
             getaddFormData(data) {//功能标签
                 this.addDialog = false
             },
+            getdateFormat() {
+                //显示时间
+                var _this = this;
+                let yy = String(new Date().getFullYear());
+                let mm = new Date().getMonth() + 1;
+                let dd = String(new Date().getDate() < 10 ? "0" + new Date().getDate() : new Date().getDate());
+                let hou = String(new Date().getHours() < 10 ? "0" + new Date().getHours() : new Date().getHours());
+                let min = String(new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes());
+                let sec = String(new Date().getSeconds() < 10 ? "0" + new Date().getSeconds() : new Date().getSeconds());
+                _this.nowTime = hou + ":" + min + ":" + sec;
+                _this.nowDate = yy + "-" + mm + "-" + dd;
+            },
         },
         mounted() {
             let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
             this.userInfo = userInfo.name;
+
+            this.getdateFormat(); //时间
+            setInterval(() => {
+                this.getdateFormat();
+            }, 1000);
         }
     }
 </script>

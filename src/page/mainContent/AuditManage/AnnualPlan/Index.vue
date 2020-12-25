@@ -1,10 +1,6 @@
 <template>
 	<div class="AnnualPlan">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            年度计划
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">年度计划</h1>
 		<!-- 头部input搜索 -->
 		<div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100% - 150px) !important">

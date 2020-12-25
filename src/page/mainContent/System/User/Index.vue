@@ -1,10 +1,6 @@
 <template>
     <div class="User">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            用户管理
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">用户管理</h1>
         <!-- 头部搜索 -->
         <div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100% - 200px) !important">

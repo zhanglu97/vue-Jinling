@@ -14,6 +14,10 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
+                        <div class="ss">
+                            <span class="zll-search">搜索</span>
+                            <span class="zll-search-reset">重置</span>
+                        </div>
                         <div class="mine-add ss">
                             <span class="el-icon-circle-plus" @click="addTable"></span>
                         </div>
@@ -80,4 +84,45 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/style/dialog.scss";
+.ss {
+    float: left;
+}
+.zll-search {
+    background: #1890ff;
+    border: 1px solid #1890ff;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    cursor: pointer;    
+    font-size: 12px;
+    &:hover {
+        transition: all .3s;
+        opacity: .8;
+    }
+    margin-left: 20px;
+    float: left;
+    margin-top: 3px;
+}
+.zll-search-reset {
+    border: 1px solid #ccc;
+    color: #aaaaaa;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    cursor: pointer;
+    margin-left: 10px;  
+    font-size: 12px;
+    &:hover {
+        transition: all .3s;
+        opacity: .8;
+    }
+    margin-top: 3px;
+}
 </style>

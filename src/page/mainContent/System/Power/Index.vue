@@ -1,10 +1,6 @@
 <template>
     <div class="Power">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            角色权限
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">角色权限</h1>
         <!-- 头部搜索 -->
         <div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100% - 100px) !important">

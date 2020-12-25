@@ -1,10 +1,6 @@
 <template>
     <div class="SystemLog">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            系统日志
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">系统日志</h1>
         <!-- 头部搜索 -->
         <div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100%) !important">
@@ -12,7 +8,7 @@
                     <el-input clearable v-model="searchInput1" placeholder="用户名"></el-input>
                 </div>
                 <div class="input_flex">
-                    <el-date-picker v-model="searchInput2" type="date" placeholder="日期"> </el-date-picker>
+                    <el-date-picker v-model="searchInput2" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期"> </el-date-picker>
                 </div>
                 <div class="input_flex search">
                     <span class="zll-search">搜索</span>

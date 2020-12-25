@@ -1,10 +1,6 @@
 <template>
 	<div class="Prospective">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            准供应商
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">准供应商</h1>
 		<!-- 头部input搜索 -->
 		<div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100%) !important">
@@ -47,9 +43,9 @@
 			:scopeWidth="100" :filterTag="true"
 		>
 			<template slot-scope="tag" slot="tag">
-				<el-tag type="success" v-if="tag.row.data9 == '有效'">{{ tag.row.data9 }}</el-tag>
-				<el-tag type="danger" v-if="tag.row.data9 == '已过期'">{{ tag.row.data9 }}</el-tag>
-				<el-tag type="warning" v-if="tag.row.data9 == '即将过期'">{{ tag.row.data9 }}</el-tag>
+				<el-tag type="success" class="table_tag" v-if="tag.row.data9 == '有效'">{{ tag.row.data9 }}</el-tag>
+				<el-tag type="danger" class="table_tag" v-if="tag.row.data9 == '已过期'">{{ tag.row.data9 }}</el-tag>
+				<el-tag type="warning" class="table_tag" v-if="tag.row.data9 == '即将过期'">{{ tag.row.data9 }}</el-tag>
 			</template>
 
 			<template slot-scope="scope" slot="operate">

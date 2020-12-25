@@ -1,8 +1,5 @@
 <template>
     <div class="leftMenu" :class="$store.state.leftMenuMin && 'min'">
-        <div class="time" :style="{color:$store.state.colorData.top.topFontColor}" v-show="!$store.state.leftMenuMin && 'min'">
-            {{nowDate}} {{nowTime}}
-        </div>
         <div class="zll-Menu">
             <el-menu :class="$store.state.colorData.index"
                 :collapse="$store.state.leftMenuMin"

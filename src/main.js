@@ -9,12 +9,14 @@ import store from './store'
 import popout from '@/components/PopoutDialog/Index' //弹框组件
 import sysTable from "@/components/Table/Index"; //表格组件
 import axios from 'axios'
+import echarts from 'echarts'
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI)
 Vue.component('popout', popout);
 Vue.component('sysTable', sysTable);
 Vue.prototype.$axios = axios
+Vue.prototype.$echarts = echarts
 
 Vue.prototype.$goPage = true;//能否跳转
 

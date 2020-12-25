@@ -58,6 +58,7 @@ export default {
 </script>
 <style scoped lang="scss">
     .FirstPage {
+        margin: 0 50px;
         .message {
             padding: 20px 30px;    
             box-shadow: 0 0 10px #ccc;

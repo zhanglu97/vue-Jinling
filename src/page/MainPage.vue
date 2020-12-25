@@ -55,7 +55,7 @@ export default {
         // padding: 15px;
         height: calc(100% - 46px);
         overflow: auto;
-        background-color: #f6f6f6;
+        background-color: #fff;
         width: calc(100% - 170px);
         margin-top: 46px;
         transition: width 0.3s;
@@ -63,7 +63,7 @@ export default {
             background: #fff;
             box-shadow: 0 0 3px #ccc;
             padding: 15px;
-            min-height: 100%;
+            height: 100%;
         }
         &.max {
             width: calc(100% - 64px);

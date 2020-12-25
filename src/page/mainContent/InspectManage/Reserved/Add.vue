@@ -170,7 +170,8 @@ export default {
     .isimg {
         .img-s {
             float: left;
-            width: 30px;
+            width: 20px;
+            margin-top: 6px;
         }
         .input_right {
             width: calc(100% - 30px);

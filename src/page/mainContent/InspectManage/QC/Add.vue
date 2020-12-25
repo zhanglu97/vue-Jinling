@@ -1,5 +1,6 @@
 <template>
     <div class="addProject UserAdd">
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">QC检验</h1>
         <div class="addForm zll-form">
             <el-form :model="addForm" :rules="rules" ref="addForm" class="demo-ruleForm">
                 <el-row :gutter="20">
@@ -158,4 +159,13 @@ export default {
 </script>
 <style lang="scss" scoped>
     @import "@/assets/style/dialog.scss";
+    
+.addProject {
+    h1 {
+        text-align: center;
+        font-size: 20px;
+        font-weight: normal;
+        margin: 10px auto;
+    }
+}
 </style>

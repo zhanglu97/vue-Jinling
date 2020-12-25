@@ -253,8 +253,13 @@ export default {
 }
 .QC {
     .popout-main {
+        width: 40%;
+        left: 30%;
         height: 800px;
         top: calc(50% - 400px);
+        .doPrint {
+            padding: 0 50px;
+        }
     }
 }
 .changePassword {

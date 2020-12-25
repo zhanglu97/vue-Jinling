@@ -335,7 +335,14 @@ li{
     }
 }
 //table样式
-.zll-table{
+.QualityReview {
+    .zll-table {
+        .el-table th.is-leaf {
+            background: #34bfc6 !important;
+        }
+    }
+}
+.zll-table {
     .el-table {
         font-size: 12px;
     }
@@ -570,7 +577,7 @@ li{
 }
 .tree {
     .el-tree-node__content {
-        height: 30px;
+        height: 45px;
     }
 }
 .mytree /deep/ {
@@ -600,7 +607,7 @@ li{
         content: '●';
         color: #bebfbe;
         left: -4px;
-        top: 6px;
+        top: 15px;
         border-left: none;
     }
     .el-tree > .el-tree-node:after {
@@ -633,7 +640,7 @@ li{
         border-top: 1px solid #bebfbe;
         height: 10px;
         line-height: 1px;
-        top: 14px;
+        top: 22px;
         width: 24px;
     }
 }
@@ -657,6 +664,12 @@ li{
     .el-checkbox {
         height: 35px;
         line-height: 35px;
+    }
+}
+.table_tag {
+    &.el-tag {
+        height: 25px;
+        line-height: 25px;
     }
 }
 .Audit {

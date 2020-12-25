@@ -130,17 +130,20 @@
                     </el-col>
                 </el-row>
             </div>
+            <!-- 样品检验 -->
             <div class="add-table" v-if="isCheck">
                 <div class="tableList">
                     <table border="1">
                         <tr>
-                            <th >物料类别</th><th>物料编码</th><th>物料名称</th><th>等级</th>
+                            <th width="160">检验号</th><th width="200">检验结果</th><th>备注</th><th width="220">检验报告</th><th width="150">检验日期</th><th width="100">检验人</th>
                         </tr>
                         <tr class="add_Table">
-                            <td><el-input clearable v-model="tableData4.data1" placeholder=""></el-input></td>
-                            <td><el-input clearable v-model="tableData4.data2" placeholder=""></el-input></td>
+                            <td width="160"><el-input clearable v-model="tableData4.data1" placeholder=""></el-input></td>
+                            <td width="200"><el-input clearable v-model="tableData4.data2" placeholder=""></el-input></td>
                             <td><el-input clearable v-model="tableData4.data3" placeholder=""></el-input></td>
-                            <td><el-input clearable v-model="tableData4.data4" placeholder=""></el-input></td>
+                            <td width="220"><el-input clearable v-model="tableData4.data4" placeholder=""></el-input></td>
+                            <td width="150"><el-input clearable v-model="tableData4.data5" placeholder=""></el-input></td>
+                            <td width="100"><el-input clearable v-model="tableData4.data6" placeholder=""></el-input></td>
                         </tr>
                     </table>
                 </div>
@@ -151,14 +154,14 @@
                         <td class="column index">{{ index + 1 }}</td>
                         <td class="column name">{{ item.name }}</td>
                         <td width="200"><el-input clearable v-model="item.number" placeholder="证书编号" :disabled="isdisable2"></el-input></td>
-                        <td width="200"><el-date-picker v-model="item.date" type="date" placeholder="有效期止" value-format="yyyy-MM-dd" :disabled="isdisable2"></el-date-picker></td>
                         <td><el-input clearable v-model="item.bz" placeholder="备注" :disabled="isdisable2"></el-input></td>
-                        <td width="100" style="position: relative">
+                        <td width="200"><el-date-picker v-model="item.date" type="date" placeholder="有效期止" value-format="yyyy-MM-dd" :disabled="isdisable2"></el-date-picker></td>
+                        <td width="150" style="position: relative">
                             <input type="file" class="file" @change="upLoad($event,index)" :disabled="isdisable2">
                             <p class="upLoad" v-show="!item.file">上传附件<i class="el-icon-paperclip"></i></p>
                             <p class="upLoad" v-show="item.file">{{ item.file }}</p>
                         </td>
-                        <td width="50"><el-checkbox v-model="item.isChoose" :disabled="isdisable2"></el-checkbox></td>
+                        <td width="100"><el-checkbox v-model="item.isChoose" :disabled="isdisable2"></el-checkbox></td>
                     </tr>
                 </table>
             </div>

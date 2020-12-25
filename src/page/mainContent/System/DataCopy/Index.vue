@@ -1,10 +1,6 @@
 <template>
     <div class="DataCopy">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-            <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            数据备份
-            <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-        </h1>
+        <h1 :style="{color:$store.state.colorData.top.topBgColor}">数据备份</h1>
         <!-- table -->
         <sys-table :isMultipleSelection="false"
             :tableData="tableData"

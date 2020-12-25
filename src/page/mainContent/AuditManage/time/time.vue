@@ -1,11 +1,7 @@
 <template>
 	<div class="time">
         <div v-if="isShow">
-            <h1 :style="{color:$store.state.colorData.top.topBgColor}">
-                <span class="line1" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-                定时审计
-                <span class="line2" :style="{backgroundColor:$store.state.colorData.top.topBgColor}"></span>
-            </h1>
+            <h1 :style="{color:$store.state.colorData.top.topBgColor}">定时审计</h1>
             <!-- table -->
             <sys-table
                 :isMultipleSelection="false" 
