@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="Table_body zll-table" v-loading="loading">
-            <el-table border style="width: 100%" tooltip-effect="dark" 
+            <el-table border style="width: 100%" tooltip-effect="dark" stripe
                 :data="getTableData" 
                 @selection-change="handleSelect"
                 :cell-style="cellStyle"

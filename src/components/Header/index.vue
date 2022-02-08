@@ -1,9 +1,11 @@
 <template>
     <div class="header" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}">
         <div class="Title_header" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}" >
-            <img class="Roms" src="@/assets/img/Login_logo2.png" />
-            <img class="Roms" src="@/assets/img/header_logo.png" />
-            <span class="splite">|</span> 供 应 商 管 理 系 统 · JSM
+            <div class="logo_w">
+                <img class="Roms" src="@/assets/img/header_logo.png" />
+                <span class="splite"></span> 
+            </div>
+            <p>变更控制管理系统</p>
         </div>
         
         <div class="time">
@@ -81,7 +83,7 @@
         components:{ colorPopout, password, addLabel },
         data(){
 			return {
-			    menuList:[{name:'信息公告',routeName:'FirstPage'}],
+			    menuList:[{name:'主页',routeName:'FirstPage'}],
                 showTheme:false, //主题弹框显示
                 addDialog: false,
                 resetDialog: false,
@@ -125,7 +127,7 @@
                 this.menuList.splice(index, 1);
             },
             closeAll(){//关闭全部标签
-                this.menuList= [{name:'信息公告',routeName:'FirstPage'}]
+                this.menuList= [{name:'主页',routeName:'FirstPage'}]
                 this.goPage('FirstPage');
             },
             closeNow(){ //关闭当前标签
@@ -144,7 +146,7 @@
                         if(this.menuList[i].routeName == this.$route.name) {
                             this.menuList= [
                                 {
-                                    name:'信息公告',routeName:'FirstPage'
+                                    name:'主页',routeName:'FirstPage'
                                 },{
                                     name:this.$route.meta.title,routeName:this.$route.name
                                 }
@@ -191,4 +193,11 @@
 
 <style scoped lang="scss">
     @import "@/assets/style/Header.scss";
+    @font-face {
+        font-family: 'fonta';  //重命名字体名
+        src: url('../../assets/fontFamily.ttf');  //引入字体
+    }
+    .Title_header {
+        font-family: 'fonta';
+    }
 </style>

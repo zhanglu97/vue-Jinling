@@ -1,6 +1,5 @@
 <template>
-	<div class="QualificationAge">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">资质时效</h1>
+	<div class="app-container QualificationAge">
 		<!-- 头部input搜索 -->
 		<div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100%) !important">

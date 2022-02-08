@@ -1,6 +1,5 @@
 <template>
-	<div class="Prospective">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">准供应商</h1>
+	<div class="app-container Prospective">
 		<!-- 头部input搜索 -->
 		<div class="Search_Top_Input">
             <div class="search_list" style="width: calc(100%) !important">

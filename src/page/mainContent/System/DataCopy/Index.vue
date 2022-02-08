@@ -1,6 +1,5 @@
 <template>
-    <div class="DataCopy">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">数据备份</h1>
+    <div class="app-container DataCopy">
         <!-- table -->
         <sys-table :isMultipleSelection="false"
             :tableData="tableData"
@@ -52,32 +51,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/style/SearchTop.scss";
-.DataCopy{
-    h1 {
-        text-align: center;
-        color: #34bfc6;
-        font-size: 20px;
-        font-weight: normal;
-        position: relative;
-        width: 100px;
-        margin: 0 auto;
-        padding-bottom: 10px;
-        .line1 {
-            width: 30px;
-            height: 1px;
-            position: absolute;
-            left: -40px;
-            top: 14px;
-            background:  #34bfc6;
-        }
-        .line2 {
-            width: 30px;
-            height: 1px;
-            position: absolute;
-            right: -40px;
-            top: 14px;
-            background:  #34bfc6;
-        }
-    }
-}
 </style>

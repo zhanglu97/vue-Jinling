@@ -5,7 +5,9 @@
             <LeftMenu></LeftMenu>
             <div class="mainContent" :class="$store.state.leftMenuMin && 'max'">
                 <div class="bodyContain">
-                    <router-view></router-view>
+                    <div class="app-main">
+                        <router-view></router-view>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,16 +56,24 @@ export default {
     .mainContent {
         // padding: 15px;
         height: calc(100% - 46px);
-        overflow: auto;
         background-color: #fff;
         width: calc(100% - 170px);
         margin-top: 46px;
         transition: width 0.3s;
         .bodyContain {
-            background: #fff;
-            box-shadow: 0 0 3px #ccc;
+            background: #f2f2f2;
             padding: 15px;
-            height: 100%;
+                height: calc(100vh - 96px);
+            .app-main {
+                background: #fff;
+                height: calc(100vh - 126px);
+                .app-container {
+                    padding: 15px;    
+                    height: 100%;
+                    box-shadow: 0 0 3px #ccc;
+                    overflow: auto;
+                }
+            }
         }
         &.max {
             width: calc(100% - 64px);

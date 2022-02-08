@@ -1,5 +1,5 @@
 <template>
-    <div class="AddAccess">
+    <div class="app-container AddAccess">
         <div class="nav" v-if="isAdd">
             <div class="add" :style="{backgroundColor:$store.state.colorData.top.topBgColor}" @click="goPage()">
                 <img src="@/assets/img/addapply.png">
@@ -390,7 +390,7 @@ export default {
         },
         goBack () {//点击了返回页面
 			VM.$goPage = true;//允许页面跳转
-			window.history.back();
+			// window.history.back();
 			history.pushState(null, null, document.URL);
             window.location.reload();
 		},

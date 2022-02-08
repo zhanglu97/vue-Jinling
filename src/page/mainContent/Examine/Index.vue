@@ -1,11 +1,11 @@
 <template>
-    <div class="Examine">
-        <div>
-            <el-col :span="5"><div @click="getshow(1)" :class="{active:shows == 1}" class="MenuList left">准入审批</div></el-col>
-            <el-col :span="5"><div @click="getshow(2)" :class="{active:shows == 2}" class="MenuList middle">动态审批</div></el-col>
-            <el-col :span="5"><div @click="getshow(3)" :class="{active:shows == 3}" class="MenuList right">定期审批</div></el-col>
-            <el-col :span="5"><div @click="getshow(4)" :class="{active:shows == 4}" class="MenuList right">质量标准</div></el-col>
-            <el-col :span="4"><div @click="getshow(5)" :class="{active:shows == 5}" class="MenuList right">物料</div></el-col>
+    <div class="app-container Examine">
+        <div class="nav_tab">
+            <div @click="getshow(1)" :class="{active:shows == 1}" class="MenuList left">准入审批</div>
+            <div @click="getshow(2)" :class="{active:shows == 2}" class="MenuList middle">动态审批</div>
+            <div @click="getshow(3)" :class="{active:shows == 3}" class="MenuList middle">定期审批</div>
+            <div @click="getshow(4)" :class="{active:shows == 4}" class="MenuList middle">质量标准</div>
+            <div @click="getshow(5)" :class="{active:shows == 5}" class="MenuList middle">物料</div>
             <div class="clearBoth"></div>
         </div>
         <div class="Examine-body">
@@ -51,34 +51,51 @@ export default {
     width: 100%;margin-bottom: 15px;
     border-top: 1px solid #e6e6e6;
     border-bottom: 0;
-    .MenuList {
-        height: 35px;
-        line-height: 33px;
-        float: left;
-        text-align: center;
-        width: 100%;
-        background: #f7f7f7;
-        color: #333;
-        font-size: 14px;
-        cursor: pointer;
-        border-top: 2px solid #f7f7f7;
-        border-bottom: 1px solid #e6e6e6;
-        &:hover {
-            transition: all .3s;
-            color: #34BFC6;
-            background: #fff;
-            border-top: 2px solid #fff;
+    .nav_tab {
+        position: relative;
+        &::after {
+            content: ' ';
+            width: calc(100% - 734px);
+            height: 1px;
+            background: #34BFC6;
+            position: absolute;
+            bottom: 0px;
+            right: -15px;
         }
-        &.active {
-            color: #34BFC6;
-            transition: all .3s;
-            background: #fff;
-            border-top: 2px solid #34BFC6;
-            border-bottom: 1px solid #fff;
+        &::before {
+            content: ' ';
+            width: 15px;
+            height: 1px;
+            background: #34BFC6;
+            position: absolute;
+            bottom: 0px;
+            left: -15px;
         }
-        &.middle {
-            border-left: 1px solid #e6e6e6;
-            border-right: 1px solid #e6e6e6;
+        .MenuList {
+            height: 33px;
+            line-height: 31px;
+            float: left;
+            text-align: center;
+            width: 150px;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #fff;
+            border-bottom-color: #34BFC6;
+            border-radius: 5px 5px 0 0;
+            &:hover {
+                transition: all .3s;
+                color: #34BFC6;
+                background: #fff;
+            }
+            &.active {
+                color: #34BFC6;
+                transition: all .3s;
+                border-color: #34BFC6;
+                border-bottom-color: #fff;
+                box-shadow: 0px -5px 6px -5px #000;
+            }
+            
         }
     }
     .Examine-body {

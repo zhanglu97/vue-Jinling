@@ -3,7 +3,7 @@
         <div class="Menu-item" v-for="(item,index) in menuData" :key="parentIndex ? (parentIndex + '-' + index) : index.toString()">
             <el-submenu v-if="item.children && item.children.length" :index="parentIndex ? (parentIndex + '-' + index) : index.toString()">
                 <template slot="title">
-                    <img v-if="item.imgSrc" :src="item.imgSrc" class="img_icon"  >
+                    <i v-if="item.fontIcon" class="iconfont" :class="item.fontIcon"></i>
                     <span slot="title">{{item.title}}</span>
                 </template>
                 <el-menu-item-group>
@@ -11,7 +11,7 @@
                 </el-menu-item-group>
             </el-submenu>
             <el-menu-item v-else :index="parentIndex ? (parentIndex + '-' + index) : index.toString()" @click.native="goPage(item.name)">
-                <img v-if="item.imgSrc" :src="item.imgSrc" class="img_icon"  >
+                <i v-if="item.fontIcon" class="iconfont" :class="item.fontIcon"></i>
                 <span slot="title">{{item.title}}</span>
             </el-menu-item>
         </div>

@@ -10,6 +10,7 @@ import popout from '@/components/PopoutDialog/Index' //弹框组件
 import sysTable from "@/components/Table/Index"; //表格组件
 import axios from 'axios'
 import echarts from 'echarts'
+import '@/assets/fontIcon/iconfont.css';    // 引用 iconfont.css
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI)

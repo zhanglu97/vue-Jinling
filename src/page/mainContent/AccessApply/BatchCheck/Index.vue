@@ -1,57 +1,60 @@
 <template>
-	<div class="BatchCheck">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">入库批检</h1>
+	<div class="app-container BatchCheck">
 		<!-- 头部input搜索 -->
-		<div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 100px) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData1" placeholder="批次号"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData8" placeholder="供应商"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData2" placeholder="物料类别">
-                        <el-option label="原料" value="原料"></el-option>
-                        <el-option label="辅料" value="辅料"></el-option>
-                        <el-option label="包装材料" value="包装材料"></el-option>
-                        <el-option label="试剂" value="试剂"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData3" placeholder="物料名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData4" placeholder="等级">
-                        <el-option label="A" value="A"></el-option>
-                        <el-option label="B" value="B"></el-option>
-                        <el-option label="C" value="C"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData5" placeholder="状态">
-                        <el-option label="未提交" value="未提交"></el-option>
-                        <el-option label="审计中" value="审计中"></el-option>
-                        <el-option label="现场审计" value="现场审计"></el-option>
-                        <el-option label="驳回" value="驳回"></el-option>
-                        <el-option label="合格" value="合格"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData6" placeholder="申请人"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-date-picker v-model="searchData7" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期"> </el-date-picker>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData1" placeholder="批次号"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData8" placeholder="供应商"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData2" placeholder="物料类别">
+                            <el-option label="原料" value="原料"></el-option>
+                            <el-option label="辅料" value="辅料"></el-option>
+                            <el-option label="包装材料" value="包装材料"></el-option>
+                            <el-option label="试剂" value="试剂"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData3" placeholder="物料名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData4" placeholder="等级">
+                            <el-option label="A" value="A"></el-option>
+                            <el-option label="B" value="B"></el-option>
+                            <el-option label="C" value="C"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData5" placeholder="状态">
+                            <el-option label="未提交" value="未提交"></el-option>
+                            <el-option label="审计中" value="审计中"></el-option>
+                            <el-option label="现场审计" value="现场审计"></el-option>
+                            <el-option label="驳回" value="驳回"></el-option>
+                            <el-option label="合格" value="合格"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData6" placeholder="申请人"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-date-picker v-model="searchData7" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期"> </el-date-picker>
+                    </div>
                 </div>
             </div>
-            <div class="addNew" style="width: 100px !important">
-                <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 入库批检</span>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
             </div>
-		</div>
+        </div>
+        <div class="Search_Top_Input">
+            <div class="addNew">
+                <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新增</span>
+            </div>
+        </div>
 		<!-- table -->
 		<sys-table 
 			:isMultipleSelection="false" 
@@ -69,7 +72,7 @@
         
 		<!-- 新建入库批检弹框 -->
 		<div class="zll-dialog">
-			<popout :title="'入库批检 · ' + title" :visible.sync="addDialog" v-if="addDialog">
+			<popout :title="'准入批检 · ' + title" :visible.sync="addDialog" v-if="addDialog">
 				<Add ref="add" slot="content" :titleTxt="title" @addForm="getFormData"></Add>
 				<template slot="bottom">
 					<p class="zll-botton" v-if="title != '查看'" @click="()=>{this.$refs.add.setFormData('addForm')}">提 交</p>
@@ -218,32 +221,4 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/assets/style/SearchTop.scss";
-.BatchCheck {
-    h1 {
-        text-align: center;
-        color: #34bfc6;
-        font-size: 20px;
-        font-weight: normal;
-        position: relative;
-        width: 140px;
-        margin: 0 auto;
-        padding-bottom: 10px;
-        .line1 {
-            width: 30px;
-            height: 1px;
-            position: absolute;
-            left: -40px;
-            top: 14px;
-            background:  #34bfc6;
-        }
-        .line2 {
-            width: 30px;
-            height: 1px;
-            position: absolute;
-            right: -40px;
-            top: 14px;
-            background:  #34bfc6;
-        }
-    }
-}
 </style>

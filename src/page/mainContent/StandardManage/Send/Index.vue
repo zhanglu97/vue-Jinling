@@ -1,6 +1,5 @@
 <template>
-    <div class="SystemLog">
-        <h1 :style="{color:$store.state.colorData.top.topBgColor}">信息发布</h1>
+    <div class="app-container SystemLog">
         <div class="Search_Top_Input">
             <div class="input_flex"></div>
             <div class="addNew">

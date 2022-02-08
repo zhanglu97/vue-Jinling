@@ -8,7 +8,15 @@
                 v-bind:style="getPosition(height)"
             >
                 <div class="title" @mousedown="mousedown" @mouseup="mouseup">
-                    <div class="text">{{title || '提示'}}</div>
+                    <div class="text" v-if="isMax !== 0">
+                        <div class="txt"><span>{{title || '提示'}}</span></div>
+                        <div class="cssborder"></div>
+                        <div class="cssborder2"></div>
+                        <div class="cssborder3"></div>
+                    </div>
+                    <div v-else>
+                        {{title || '提示'}}
+                    </div>
                     <div class="tool" @mousedown.stop>
                         <!--最小化-->
                         <i class="el-icon-minus" v-show="isMax == 1" @click="setIsMax(0)"></i>
@@ -152,17 +160,80 @@ export default {
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 flex: 1;
-                height: 100%;
-                line-height: 40px;
-                padding-left: 20px;
+                text-align: center;
+                font-size: 14px;
+                .txt {
+                    line-height: 40px;
+                    height: 40px;
+                    position: relative;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-content: center;
+                    justify-content: center;
+                    span {
+                        position: absolute;
+                        top: 10px;
+                    }
+                }
+                .cssborder {
+                    background: #ffffff;
+                    position: relative;
+                    height: 10px;
+                    line-height: 10px;
+                    width: 28%;
+                    float: left;
+                    z-index: 1111;
+                    &::after {
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-bottom: 10px solid transparent;
+                        border-right: 15px solid #284358;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                    }
+                }
+                .cssborder2 {
+                    background: #284358;
+                    position: relative;
+                    height: 10px;
+                    line-height: 10px;
+                    width: 44%;
+                    float: left;
+                    z-index: 1111;
+                }
+                .cssborder3 {
+                    background: #ffffff;
+                    position: relative;
+                    margin-bottom: 5px;
+                    height: 10px;
+                    line-height: 10px;
+                    width: 28%;
+                    float: left;
+                    z-index: 1111;
+                    &::after {
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-bottom: 10px solid transparent;
+                        border-left: 15px solid #284358;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+                }
             }
             .tool {
                 max-width: 120px;
                 text-align: right;
                 padding-right: 20px;
                 height: 100%;
-                line-height: 40px;
+                line-height: 30px;
                 cursor: initial;
+                position: absolute;
+                right: 0;
+                top: 2px;
                 i {
                     cursor: pointer;
                     font-size: 16px;
@@ -181,7 +252,7 @@ export default {
             flex-direction: column;
             position: relative;
             overflow: auto;
-            padding: 10px;
+            padding: 20px 15px;
         }
         /*底部按钮*/
         .bottom {

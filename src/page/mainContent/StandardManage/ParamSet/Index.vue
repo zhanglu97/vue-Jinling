@@ -1,5 +1,5 @@
 <template>
-    <div class="ParamSet">
+    <div class="app-container ParamSet">
         <div class="list" v-for="(item, index) in paramList" :key="index"
             @mouseenter="showActive(index,1)"
             @mouseleave="showActive(index,0)"
@@ -125,7 +125,6 @@ export default {
 
 <style lang="scss" scoped>
 .ParamSet {
-    margin-top: 50px;
     .list {
         float: left;
         cursor: pointer;

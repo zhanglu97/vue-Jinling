@@ -2,12 +2,11 @@
 export default [
     {
         name: 'FirstPage',//路由name
-        title: '信息公告',
-        icon: 'el-icon-s-comment',
-        imgSrc: require('../../assets/img/icon1.png'),
+        title: '主页',
+        fontIcon: 'icon-shouye',
     }, {
         title: '准入申请',
-        imgSrc: require('../../assets/img/icon3.png'),
+        fontIcon: 'icon-tianjiazitu',
         children: [ //子菜单
             {
                 name: 'AddAccess',//路由name
@@ -17,12 +16,12 @@ export default [
                 title: '申请管理',
             }, {
                 name: 'BatchCheck',//路由name
-                title: '批次请检',
+                title: '准入批检',
             },
         ]
     }, {
         title: '审计管理',
-        imgSrc: require('../../assets/img/icon4.png'),
+        fontIcon: 'icon-shenjizuoyeguanli',
         children: [ //子菜单
             {
                 name: 'admit',//路由name
@@ -32,7 +31,7 @@ export default [
                 title: '动态审计',
             }, {
                 name: 'time',//路由name
-                title: '定时审计',
+                title: '定期审计',
             }, {
                 name: 'AnnualPlan',//路由name
                 title: '年度计划',
@@ -43,7 +42,7 @@ export default [
         ]
     }, {
         title: '供应商管理',
-        imgSrc: require('../../assets/img/icon8.png'),
+        fontIcon: 'icon-jinpaigongyings',
         children: [ //子菜单
             {
                 name: 'Prospective',//路由name
@@ -58,7 +57,7 @@ export default [
         ]
     }, {
         title: '检验考察',
-        imgSrc: require('../../assets/img/icon6.png'),
+        fontIcon: 'icon-kaochafenxi',
         children: [ //子菜单
             {
                 name: 'InspectionResult',//路由name
@@ -77,31 +76,28 @@ export default [
     }, {
         title: '审批',
         name: 'Examine',//路由name
-        imgSrc: require('../../assets/img/icon9.png'),
+        fontIcon: 'icon-shenpi',
     }, {
-        title: '试剂管理',
-        imgSrc: require('../../assets/img/icon7.png'),
+        title: '变更管理',
+        fontIcon: 'icon-biangengguanli',
         children: [ //子菜单
             {
                 name: 'Receive',//路由name
-                title: '领用发放',
+                title: '我要变更',
             }, {
                 name: 'ReceiveRecord',//路由name
-                title: '领用记录',
+                title: '变更管理',
             }, {
                 name: 'Stock',//路由name
-                title: '库存管理',
-            }, {
-                name: 'ReagentManage',//路由name
-                title: '试剂管理',
+                title: '变更台账',
             }, {
                 name: 'StandBook',//路由name
-                title: '试剂台账',
+                title: '文件控制',
             },
         ]
     }, {
         title: '标准管理',
-        imgSrc: require('../../assets/img/icon2.png'),
+        fontIcon: 'icon-biaozhunicon-',
         children: [ //子菜单
             {
                 name: 'Send',//路由name
@@ -123,7 +119,7 @@ export default [
         ]
     }, {
         title: '系统设置',
-        imgSrc: require('../../assets/img/icon5.png'),
+        fontIcon: 'icon-xitongguanli',
         children: [ //子菜单
             {
                 name: 'Organization',//路由name

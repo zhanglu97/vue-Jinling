@@ -1,4 +1,4 @@
-import FirstPage from '@/page/mainContent/Firstpage/Index' //信息公告
+import FirstPage from '@/page/mainContent/Firstpage/Index' //主页
 import QualitStandard from '@/page/mainContent/StandardManage/QualitStandard/Index' //标准管理——质量标准
 import ParamSet from '@/page/mainContent/StandardManage/ParamSet/Index' //标准管理——参数设定
 import QualityName from '@/page/mainContent/StandardManage/QualityName/Index' //标准管理——资质认证
@@ -6,10 +6,10 @@ import Send from '@/page/mainContent/StandardManage/Send/Index' //信息发布
 // import MaterialManage from '@/page/mainContent/StandardManage/MaterialManage/Index' //标准管理——物料管理
 import AddAccess from '@/page/mainContent/AccessApply/AddAccess/Index' //准入申请——新建申请
 import ApplyManage from '@/page/mainContent/AccessApply/ApplyManage/Index' //准入申请——申请管理
-import BatchCheck from '@/page/mainContent/AccessApply/BatchCheck/Index' //准入申请——批次请检
+import BatchCheck from '@/page/mainContent/AccessApply/BatchCheck/Index' //准入申请——准入批检
 import admit from '@/page/mainContent/AuditManage/admit/admit' //审计管理——准入审计
 import dynamic from '@/page/mainContent/AuditManage/dynamic/dynamic' //审计管理——动态审计
-import time from '@/page/mainContent/AuditManage/time/time' //审计管理——定时审计
+import time from '@/page/mainContent/AuditManage/time/time' //审计管理——定期审计
 import AnnualPlan from '@/page/mainContent/AuditManage/AnnualPlan/Index' //审计管理——年度计划
 import QualityReview from '@/page/mainContent/AuditManage/QualityReview/Index' //审计管理——质量回顾
 import Supply from '@/page/mainContent/Supplier/Supply/Index' //供应商管理——合格供应商
@@ -36,7 +36,7 @@ export default [
     {
         path: 'FirstPage',
         name: 'FirstPage',
-        meta: {title: '信息公告'},
+        meta: {title: '主页'},
         component: FirstPage
     }, {
         path: 'Send',
@@ -78,7 +78,7 @@ export default [
     }, {
         path: 'BatchCheck',
         name: 'BatchCheck',
-        meta: {title: '批次请检'},
+        meta: {title: '准入批检'},
         component: BatchCheck
     }, {
         path: 'admit',
@@ -93,7 +93,7 @@ export default [
     }, {
         path: 'time',
         name: 'time',
-        meta: {title: '定时审计'},
+        meta: {title: '定期审计'},
         component: time
     }, {
         path: 'Prospective',

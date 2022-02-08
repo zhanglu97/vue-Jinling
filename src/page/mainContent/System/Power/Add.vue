@@ -43,7 +43,7 @@
                 },
                 powerTable:[],
                 powerData: [{
-                    mainTitle: '信息公告',
+                    mainTitle: '主页',
                     children: [{
                     }]
                     
@@ -65,12 +65,12 @@
                             { title: '作废', value: '申请管理作废' }
                         ],
                     },{
-                        subtitle: '批次请检',
+                        subtitle: '准入批检',
                         content: [
                             { title: '入库批检', value: '入库批检' },
-                            { title: '查看', value: '批次请检查看' },
-                            { title: '编辑', value: '批次请检编辑' },
-                            { title: '删除', value: '批次请检删除' }
+                            { title: '查看', value: '准入批检查看' },
+                            { title: '编辑', value: '准入批检编辑' },
+                            { title: '删除', value: '准入批检删除' }
                         ],
                     }] 
                 },{
@@ -88,10 +88,10 @@
                             { title: '审计', value: '动态审计审计' }
                         ],
                     }, {
-                        subtitle: '定时审计',
+                        subtitle: '定期审计',
                         content: [
-                            { title: '查看', value: '定时审计查看' },
-                            { title: '审计', value: '定时审计审计' }
+                            { title: '查看', value: '定期审计查看' },
+                            { title: '审计', value: '定期审计审计' }
                         ],
                     }, {
                         subtitle: '年度计划',
