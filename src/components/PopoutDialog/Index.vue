@@ -28,13 +28,11 @@
                         <i class="el-icon-close" @click="close()"></i>
                     </div>
                 </div>
-                <div class="content" v-show="isMax != 0">
+                <div class="content" v-show="isMax != 0" :class="isBottom ? '': 'no'">
                     <slot name="content"></slot>
                 </div>
-                <div class="bottom">
+                <div class="bottom" :class="isBottom ? '': 'no'">
                     <slot name="bottom"></slot>
-                    <!-- <button class="confirm" @click="confirm()"><i class="el-icon-check"></i> 确定</button>
-                    <button class="clear" @click="close()"><i class="el-icon-close"></i>取消</button>-->
                 </div>
             </div>
         </div>
@@ -43,7 +41,32 @@
 <script>
 export default {
     name: "movePopout",
-    props: ["title", "visible", "height"], //title 标题 、 visible是否可见
+    props: {
+        title: {
+            default: function() {
+                return '';
+            },
+            type: String
+        },
+        visible: {
+            default: function() {
+                return false;
+            },
+            type: Boolean
+        },
+        height: {
+            default: function() {
+                return '';
+            },
+            type: String
+        },
+        isBottom: {
+            default: function() {
+                return true;
+            },
+            type: Boolean
+        },
+    },
     data() {
         return {
             isMax: 1, //是否是最大化 0 最小 1 正常  2最大
@@ -122,24 +145,24 @@ export default {
     .popout-main {
         &.isMax {
             width: calc(100% - 60px);
-            height: calc(100% - 90px);
+            height: calc(100% - 90px) !important;
             left: 30px;
             top: 45px;
         }
         &.isMin {
             width: 200px;
-            height: 40px;
+            height: 40px !important;
             left: 0;
             bottom: 0;
             overflow: hidden;
             top: auto;
         }
         position: absolute;
-        width: 50%;
+        width: 600px;
         height: 500px;
         background: #ffffff;
         z-index: 10;
-        left: 25%;
+        left: calc(50% - 300px);
         top: calc(50% - 300px);
         overflow: hidden;
         font-size: 12px;
@@ -252,7 +275,10 @@ export default {
             flex-direction: column;
             position: relative;
             overflow: auto;
-            padding: 20px 15px;
+            padding: 20px 25px 0px 25px;
+            &.no {
+                height: calc(100% - 46px);
+            }
         }
         /*底部按钮*/
         .bottom {
@@ -263,6 +289,9 @@ export default {
             justify-content: flex-end;
             padding-bottom: 10px;
             padding-top: 10px;
+            &.no {
+                display: none;height: 0;
+            }
             .confirm,
             .clear {
                 height: 35px;
@@ -290,17 +319,17 @@ export default {
 }
 .bigSize {
     .popout-main {
-        width: 60%;
+        width: 800px;
         height: 700px;
-        left: 20%;
+        left: calc(50% - 400px);
     }
 }
 .minSize {
     .popout-main {
         font-size: 12px;
-        width: 30%;
+        width: 400px;
         height: 350px;
-        left: 35%;
+        left: calc(50% - 200px);
         top: calc(50% - 250px);
     }
 }
@@ -324,9 +353,7 @@ export default {
 }
 .QC {
     .popout-main {
-        width: 40%;
-        left: 30%;
-        height: 800px;
+        height: 660px;
         top: calc(50% - 400px);
         .doPrint {
             padding: 0 50px;

@@ -1,40 +1,47 @@
 <template>
-	<div class="app-container Supply">
+	<div class="app-container Prospective">
 		<!-- 头部input搜索 -->
-		<div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100%) !important">
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData1" placeholder="物料类别">
-                        <el-option label="原料" value="原料"></el-option>
-                        <el-option label="辅料" value="辅料"></el-option>
-                        <el-option label="包装材料" value="包装材料"></el-option>
-                        <el-option label="试剂" value="试剂"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData3" placeholder="等级">
-                        <el-option label="A" value="A"></el-option>
-                        <el-option label="B" value="B"></el-option>
-                        <el-option label="C" value="C"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData4" placeholder="规格"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData5" placeholder="供应商"></el-input>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData1" placeholder="物料类别">
+                            <el-option label="原料" value="原料"></el-option>
+                            <el-option label="辅料" value="辅料"></el-option>
+                            <el-option label="包装材料" value="包装材料"></el-option>
+                            <el-option label="试剂" value="试剂"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData3" placeholder="等级">
+                            <el-option label="A" value="A"></el-option>
+                            <el-option label="B" value="B"></el-option>
+                            <el-option label="C" value="C"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData4" placeholder="规格"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData5" placeholder="供应商"></el-input>
+                    </div>
                 </div>
             </div>
-		</div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
+        <div class="Search_Top_Input">
+            <div class="addNew">
+				<span class="edit"><i class="el-icon-date"></i> 生成台账</span>
+            </div>
+        </div>
 		<!-- table -->
-		<sys-table 
+		<sys-table  class="m_table"
 			:isMultipleSelection="false" 
 			:tableData="tableData" 
 			:tableLoading="tableLoading" 
@@ -52,9 +59,9 @@
 			</template>
 		</sys-table>
 
-		<!-- 新建合格供应商弹框 -->
+		<!-- 新建准供应商弹框 -->
 		<div class="zll-dialog">
-			<popout title="合格供应商 · 查看" :visible.sync="addDialog" v-if="addDialog">
+			<popout title="准供应商 · 查看" :visible.sync="addDialog" v-if="addDialog" height="360px">
 				<Add ref="add" slot="content" ></Add>
 				<template slot="bottom">
 					<p class="zll-botton" @click="addDialog = false">确 定</p>
@@ -118,13 +125,13 @@ export default {
 			this.tableLoading = true;
 			setTimeout(() => {
 				this.tableHeader = [
-					{ columnValue: "data1", columnName: "物料类别" },
+					{ columnValue: "data1", columnName: "物料类别", width: 100 },
 					{ columnValue: "data2", columnName: "物料编码" },
 					{ columnValue: "data3", columnName: "物料名称" },
 					{ columnValue: "data4", columnName: "等级", width: 80  },
 					{ columnValue: "data5", columnName: "规格" },
 					{ columnValue: "data6", columnName: "类别", width: 80 },
-					{ columnValue: "data7", columnName: "供应商", width: 200 },
+					{ columnValue: "data7", columnName: "供应商" },
 					{ columnValue: "data8", columnName: "状态", width: 100 },
 				];
 				this.tableData = JSON.parse(JSON.stringify(this.tableData));
@@ -154,32 +161,4 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/assets/style/SearchTop.scss";
-.Supply {
-    h1 {
-        text-align: center;
-        color: #34bfc6;
-        font-size: 20px;
-        font-weight: normal;
-        position: relative;
-        width: 150px;
-        margin: 0 auto;
-        padding-bottom: 10px;
-        .line1 {
-            width: 30px;
-            height: 1px;
-            position: absolute;
-            left: -40px;
-            top: 14px;
-            background:  #34bfc6;
-        }
-        .line2 {
-            width: 30px;
-            height: 1px;
-            position: absolute;
-            right: -40px;
-            top: 14px;
-            background:  #34bfc6;
-        }
-    }
-}
 </style>

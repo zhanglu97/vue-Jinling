@@ -1,28 +1,33 @@
 <template>
 	<div class="app-container AnnualPlan">
 		<!-- 头部input搜索 -->
-		<div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 150px) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData1" placeholder="标准编码"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData3" placeholder="物料编码"></el-input>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData1" placeholder="标准编码"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData3" placeholder="物料编码"></el-input>
+                    </div>
                 </div>
             </div>
-			<div class="addNew" style="width: 150px !important">
-				<span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建年度计划</span>
-			</div>
-		</div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
+        <div class="Search_Top_Input">
+            <div class="addNew">
+				<span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建</span>
+				<span class="edit"><i class="el-icon-date"></i> 生成台账</span>
+            </div>
+        </div>
 		<!-- table -->
-		<sys-table 
+		<sys-table
 			:isMultipleSelection="false" 
 			:tableData="tableData" 
 			:tableLoading="tableLoading" 

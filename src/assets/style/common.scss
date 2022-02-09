@@ -296,7 +296,7 @@ li{
 }
 //表单样式
 .zll-form{
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     .el-form-item__label {
         width: 72px;
         height: 32px;
@@ -530,6 +530,18 @@ li{
     }
     .el-checkbox-group {
         float: left;margin-right: 15px;
+    }
+}
+.change_table  {
+    .text-formList {
+        .text_right {
+            .el-checkbox {
+                width: 80px;
+                .el-checkbox__label {
+                    color: #000;
+                }
+            }
+        }
     }
 }
 

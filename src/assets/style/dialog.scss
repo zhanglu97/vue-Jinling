@@ -47,9 +47,18 @@ $baseColor: #1890ff;
         font-size: 12px;
         display: inline-table;
         text-align: right;
-        color: #606266;
+        color: #878989;
+        float: left;
         &.float {
             float: left;
+        }
+    }
+    .text-formList {
+        height: 32px;
+        line-height: 32px;
+        .text_right {
+            float: left;
+            width: calc(100% - 72px);
         }
     }
     .Search_Top_Input {
@@ -194,16 +203,15 @@ $baseColor: #1890ff;
         }
     }
     .tableList {
-        margin-top: 20px;
+        margin-top: 15px;
         position: relative;
         table {
             width: 100%;
             border-collapse: collapse;
-            border:1px solid #ffffff;
+            border:1px solid #EBEEF5;
             text-align: center;
             th {
-                background: #a6a6a6;
-                color: #ffffff;
+                background: #ddd;
                 padding: 3px;
                 font-weight: normal;
                 height: 26px;

@@ -174,7 +174,7 @@ export default {
             margin-top: 6px;
         }
         .input_right {
-            width: calc(100% - 30px);
+            width: calc(100% - 20px);
         }
     }
 }

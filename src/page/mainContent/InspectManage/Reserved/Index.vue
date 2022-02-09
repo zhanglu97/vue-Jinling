@@ -1,26 +1,30 @@
 <template>
     <div class="app-container Reserved">
         <!-- 头部搜索 -->
-        <div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100%) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData1" placeholder="产品名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData2" placeholder="产品编码"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData3" placeholder="批次号"></el-input>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
-                </div>
-                <div class="addNew" style="width: 150px !important">
-                    <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建留样</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData1" placeholder="产品名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData2" placeholder="产品编码"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData3" placeholder="批次号"></el-input>
+                    </div>
                 </div>
             </div>
-		</div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
+        <div class="Search_Top_Input">
+            <div class="addNew">
+                <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新增</span>
+            </div>
+        </div>
         <!-- table -->
         <sys-table  
             :isMultipleSelection="false" 
@@ -30,8 +34,8 @@
             :scopeWidth="120"
         >
             <template slot-scope="scope" slot="operate">
-                <el-button @click="edit(scope.row)" type="text" size="small" v-if="scope.row.tableNum12 == '待留样'">编辑</el-button>
-                <el-button @click="edit(scope.row)" type="text" size="small" v-if="scope.row.tableNum12 == '留样中'">考察</el-button>
+                <el-button @click="edit(scope.row,'edit')" type="text" size="small" v-if="scope.row.tableNum12 == '待留样'">编辑</el-button>
+                <el-button @click="edit(scope.row,'kaocha')" type="text" size="small" v-if="scope.row.tableNum12 == '留样中'">考察</el-button>
                 <el-button @click="goDetail(scope.row)" type="text" size="small" v-if="scope.row.tableNum12 == '结束'">查看</el-button>
             </template>
         </sys-table>
@@ -136,9 +140,13 @@
                 this.addDialog = true
                 this.title = '查看'
             },
-            edit(val){ //编辑
+            edit(val,type){ //编辑
                 this.addDialog = true
-                this.title = '编辑'
+                if(type == 'edit') {
+                    this.title = '编辑'
+                }else if(type == 'kaocha') {
+                    this.title = '考察'
+                }
             },
             searchReset() { //重置搜索
                 this.searchData1 = "";

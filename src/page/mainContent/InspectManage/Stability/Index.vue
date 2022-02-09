@@ -1,49 +1,53 @@
 <template>
     <div class="app-container Stability">
         <!-- 头部搜索 -->
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData1" placeholder="物料类别">
+                            <el-option label="原料" value="原料"></el-option>
+                            <el-option label="辅料" value="辅料"></el-option>
+                            <el-option label="包装材料" value="包装材料"></el-option>
+                            <el-option label="试剂" value="试剂"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData3" placeholder="等级">
+                            <el-option label="A" value="A"></el-option>
+                            <el-option label="B" value="B"></el-option>
+                            <el-option label="C" value="C"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData4" placeholder="规格">
+                            <el-option label="规格" value="规格"></el-option>
+                        </el-select>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData5" placeholder="供用商"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchData6" placeholder="状态">
+                            <el-option label="待检" value="待检"></el-option>
+                            <el-option label="完成" value="完成"></el-option>
+                        </el-select>
+                    </div>
+                </div>
+            </div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
         <div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 100px) !important">
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData1" placeholder="物料类别">
-                        <el-option label="原料" value="原料"></el-option>
-                        <el-option label="辅料" value="辅料"></el-option>
-                        <el-option label="包装材料" value="包装材料"></el-option>
-                        <el-option label="试剂" value="试剂"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData3" placeholder="等级">
-                        <el-option label="A" value="A"></el-option>
-                        <el-option label="B" value="B"></el-option>
-                        <el-option label="C" value="C"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData4" placeholder="规格">
-                        <el-option label="规格" value="规格"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData5" placeholder="供用商"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchData6" placeholder="状态">
-                        <el-option label="待检" value="待检"></el-option>
-                        <el-option label="完成" value="完成"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
-                </div>
+            <div class="addNew">
+                <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建</span>
             </div>
-            <div class="addNew" style="width: 100px !important">
-                <span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建考察</span>
-            </div>
-		</div>
+        </div>
         <!-- table -->
         <sys-table  
             :isMultipleSelection="false" 

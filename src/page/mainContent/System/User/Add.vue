@@ -2,8 +2,6 @@
     <div class="addProject UserAdd">
         <div class="addForm zll-form">
             <el-form :model="addForm" :rules="rules" ref="addForm" class="demo-ruleForm">
-                <el-row :gutter="20">
-                    <el-col :span="12">
                         <el-form-item class="formList" prop="addFormData1" label="部门：">
                             <el-select clearable v-model="addForm.addFormData2" placeholder="请选择部门">
                                 <el-option label="质量部" value="质量部"></el-option>
@@ -22,8 +20,6 @@
                         <el-form-item class="formList" prop="addFormData4" label="开户日期：">
                             <el-date-picker clearable type="date" placeholder="请选择开户日期" v-model="addForm.addFormData4"></el-date-picker>
                         </el-form-item>
-                    </el-col>
-                    <el-col :span="12">
                         <el-form-item class="formList" prop="addFormData5" label="姓名：">
                             <el-input clearable class="input_right" placeholder="请输入姓名" v-model="addForm.addFormData5"></el-input>
                         </el-form-item>
@@ -36,8 +32,6 @@
                                 <el-option label="停用" value="停用"></el-option>
                             </el-select>
                         </el-form-item>
-                    </el-col>
-                </el-row>
             </el-form>
         </div>
     </div>

@@ -13,9 +13,9 @@
         </div>
         <!-- 右侧按钮 -->
         <div class="header_user" :style="{backgroundColor:$store.state.colorData.top.topBgColor,color:$store.state.colorData.top.topFontColor}">
-            <div class="headalist"  @click="showTheme = true">
+            <!-- <div class="headalist"  @click="showTheme = true">
                 <span class="changeColor" title="切换主题"><i class="el-icon-orange"></i></span>
-            </div>
+            </div> -->
             <div class="headalist headLayout">
                 <span>{{ userInfo }} <i class="el-icon-caret-bottom"></i></span>
                 <div class="mouseHoverParent">

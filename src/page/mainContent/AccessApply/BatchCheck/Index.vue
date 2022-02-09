@@ -72,7 +72,7 @@
         
 		<!-- 新建入库批检弹框 -->
 		<div class="zll-dialog">
-			<popout :title="'准入批检 · ' + title" :visible.sync="addDialog" v-if="addDialog">
+			<popout :title="'准入批检 · ' + title" :visible.sync="addDialog" v-if="addDialog" height="360px">
 				<Add ref="add" slot="content" :titleTxt="title" @addForm="getFormData"></Add>
 				<template slot="bottom">
 					<p class="zll-botton" v-if="title != '查看'" @click="()=>{this.$refs.add.setFormData('addForm')}">提 交</p>

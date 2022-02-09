@@ -1,36 +1,40 @@
 <template>
     <div class="app-container User">
         <!-- 头部搜索 -->
-        <div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 200px) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchInput1" placeholder="姓名"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchInput2" placeholder="部门"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchInput3" placeholder="组别"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchInput4" placeholder="角色"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchInput5" placeholder="状态">
-                        <el-option label="正常" value="正常"></el-option>
-                        <el-option label="停用" value="停用"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchInput1" placeholder="姓名"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchInput2" placeholder="部门"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchInput3" placeholder="组别"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchInput4" placeholder="角色"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchInput5" placeholder="状态">
+                            <el-option label="正常" value="正常"></el-option>
+                            <el-option label="停用" value="停用"></el-option>
+                        </el-select>
+                    </div>
                 </div>
             </div>
-			<div class="addNew" style="width: 200px !important">
-                <span @click="addUser()"><i class="el-icon-circle-plus-outline"></i> 新建用户</span>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
+        <div class="Search_Top_Input">
+            <div class="addNew">
+                <span @click="addUser()"><i class="el-icon-circle-plus-outline"></i> 新增</span>
                 <span class="delete" @click="batchCancal"><i class="el-icon-delete"></i> 批量删除</span>
-			</div>
-		</div>
+            </div>
+        </div>
         <!-- table -->
         <sys-table  
             :isMultipleSelection="true" 
@@ -47,7 +51,7 @@
         
         <!-- 新建管理用户弹框 -->
         <div class="zll-dialog">
-            <popout :title="'用户 · ' + title" :visible.sync="addDialog" v-if="addDialog" >
+            <popout :title="'用户 · ' + title" :visible.sync="addDialog" v-if="addDialog" class="minSize" height="450px">
                 <Add ref="add" slot="content" @addForm="getFormData"></Add>
                 <template slot="bottom">
                     <p class="zll-botton" v-if="title == '查看'" @click="addDialog = false">确 定</p>

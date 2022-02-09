@@ -1,26 +1,25 @@
 <template>
 	<div class="app-container QualityReview">
 		<!-- 头部input搜索 -->
-		<div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 150px) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData3" placeholder="供应商"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-date-picker v-model="searchData1" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期"> </el-date-picker>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData3" placeholder="供应商"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-date-picker v-model="searchData1" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期"> </el-date-picker>
+                    </div>
                 </div>
             </div>
-			<!-- <div class="addNew" style="width: 150px !important">
-				<span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建质量回顾</span>
-			</div> -->
-		</div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
         <div class="repord">
             <div class="left">
                 <p>
@@ -199,19 +198,9 @@ export default {
 <style scoped lang="scss">
 @import "@/assets/style/SearchTop.scss";
 .QualityReview {
-    h1 {
-        text-align: center;
-        color: #34bfc6;
-        font-size: 20px;
-        font-weight: normal;
-        position: relative;
-        width: 100px;
-        margin: 0 auto;
-        padding-bottom: 10px;
-    }
     .repord {
         background: #f2f2f2;
-        margin-bottom: 20px;
+        margin: 15px 0;
         padding: 10px 20px 20px;
         .left {
             width: calc(100% - 120px);
@@ -225,12 +214,12 @@ export default {
             }
         }
         .right {
-            width: 120px;
+            width: 100px;
             float: left;
         }
     }
     .echart_bottom {
-        margin-top: 20px;
+        margin-top: 15px;
         .echart {
             width: 100%;
             height: 350px;
@@ -239,14 +228,13 @@ export default {
             height: 350px;
             display: flex;align-items: center;justify-content: center;
             .zll-botton {
-                width: 120px;
-                margin-bottom: 20px;
+                width: 100px;
+                margin-bottom: 15px;
                 background-color: #34BFC6;
             }
         }
     }
     .tableList {
-        margin-top: 20px;
         position: relative;
         table {
             width: 100%;

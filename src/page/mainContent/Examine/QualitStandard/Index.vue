@@ -1,28 +1,27 @@
 <template>
 	<div class="QualitStandard">
         <!-- 头部input搜索 -->
-		<div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 150px) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData1" placeholder="标准编码"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchData3" placeholder="物料编码"></el-input>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData1" placeholder="标准编码"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData2" placeholder="物料名称"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchData3" placeholder="物料编码"></el-input>
+                    </div>
                 </div>
             </div>
-			<div class="addNew" style="width: 150px !important">
-				<span @click="add()"><i class="el-icon-circle-plus-outline"></i> 新建质量标准</span>
-			</div>
-		</div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
 		<!-- table -->
-		<sys-table 
+		<sys-table class="m_table"
 			:isMultipleSelection="false" 
 			:tableData="tableData" 
 			:tableLoading="tableLoading" 
@@ -30,19 +29,15 @@
 			:scopeWidth="150"
 		>
 			<template slot-scope="scope" slot="operate">
-				<el-button @click="goDetail(scope.row)" type="text" size="small">查看</el-button>
-				<el-button @click="edit(scope.row)" type="text" size="small">修订</el-button>
+				<el-button @click="edit(scope.row,'look')" v-if="scope.row.data6 !== '审批中'" type="text" size="small">查看</el-button>
+				<el-button @click="edit(scope.row,'edit')" v-else type="text" size="small">审批</el-button>
 			</template>
 		</sys-table>
 
 		<!-- 新建质量标准弹框 -->
 		<div class="zll-dialog">
-			<popout :title="'质量标准 · ' + title" :visible.sync="addDialog" v-if="addDialog">
+			<popout :title="'质量标准 · ' + title" :visible.sync="addDialog" v-if="addDialog" height="600px" :isBottom="false">
 				<Add ref="add" slot="content" :titleTxt="title" @addForm="getFormData"></Add>
-				<template slot="bottom">
-					<p class="zll-botton" v-if="title != '查看'" @click="()=>{this.$refs.add.setFormData('addForm')}">提 交</p>
-					<p class="zll-botton" v-else @click="addDialog = false">确 定</p>
-				</template>
 			</popout>
 		</div>
 	</div>
@@ -64,14 +59,14 @@ export default {
 					data3: "P20201011", //物料编码
 					data4: 5, //检项数
 					data5: "A1.0", //版本
-					data6: "执行", //状态
+					data6: "审批中", //状态
 				},{
 					data1: "QSYL0001", //标准编码
 					data2: "黄原胶", //物料名称
 					data3: "P20200830", //物料编码
 					data4: 3, //检项数
 					data5: "A1.1", //版本
-					data6: "停用", //状态
+					data6: "通过", //状态
 				},
 			],
 			tableHeader: [],
@@ -84,41 +79,29 @@ export default {
 			//获取表格数据
 			this.tableLoading = true;
 			setTimeout(() => {
-				for (let i = 0; i < this.tableData.length; i++) {
-					this.tableData[i]["index"] = i + 1;
-				}
 				this.tableHeader = [
-					{ columnValue: "index", columnName: "序号", width: 50 },
 					{ columnValue: "data1", columnName: "标准编码" },
 					{ columnValue: "data2", columnName: "物料名称" },
 					{ columnValue: "data3", columnName: "物料编码" },
 					{ columnValue: "data4", columnName: "检项数", isSortable: true, width: 100  },
 					{ columnValue: "data5", columnName: "版本" },
-					{ columnValue: "data6", columnName: "状态", width: 100 },
+					{ columnValue: "data6", columnName: "审批状态", width: 100 },
 				];
 				this.tableData = JSON.parse(JSON.stringify(this.tableData));
 				this.tableLoading = false;
 			}, 500);
 		},
-		getFormData(data) {//获取新增表单数据
-			console.log(data);
+		getFormData() {//获取新增表单数据
 			this.addDialog = false;
-			this.tableData.push({
-				data2: data.addFormData1, //
-			});
 			this.getTableList();
 		},
-		add() {//新建
+		edit(row,type) {
 			this.addDialog = true;
-			this.title = "新建";
-		},
-		goDetail(row) {
-			this.addDialog = true;
-			this.title = "查看";
-		},
-		edit(row) {
-			this.addDialog = true;
-			this.title = "修订";
+            if(type == 'look') {
+			    this.title = "查看";
+            }else if(type == 'edit') {
+			    this.title = "审批";
+            }
 		},
 		searchReset() {//重置搜索
 			this.searchData1 = "";
@@ -137,4 +120,9 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/assets/style/SearchTop.scss";
+.QualitStandard {
+    .m_table {
+        margin-top: 15px;
+    }
+}
 </style>

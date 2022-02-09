@@ -20,7 +20,7 @@ export default [
             },
         ]
     }, {
-        title: '审计管理',
+        title: '审计',
         fontIcon: 'icon-shenjizuoyeguanli',
         children: [ //子菜单
             {
@@ -41,7 +41,7 @@ export default [
             },
         ]
     }, {
-        title: '供应商管理',
+        title: '供应商',
         fontIcon: 'icon-jinpaigongyings',
         children: [ //子菜单
             {
@@ -78,11 +78,11 @@ export default [
         name: 'Examine',//路由name
         fontIcon: 'icon-shenpi',
     }, {
-        title: '变更管理',
+        title: '变更',
         fontIcon: 'icon-biangengguanli',
         children: [ //子菜单
             {
-                name: 'Receive',//路由name
+                name: 'WantChange',//路由name
                 title: '我要变更',
             }, {
                 name: 'ReceiveRecord',//路由name
@@ -99,10 +99,11 @@ export default [
         title: '标准管理',
         fontIcon: 'icon-biaozhunicon-',
         children: [ //子菜单
+            // {
+            //     name: 'Send',//路由name
+            //     title: '信息发布',
+            // }, 
             {
-                name: 'Send',//路由name
-                title: '信息发布',
-            }, {
                 name: 'ParamSet',//路由name
                 title: '参数设定',
             }, {

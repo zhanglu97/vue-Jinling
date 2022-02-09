@@ -30,6 +30,8 @@ import Stock from '@/page/mainContent/ReagentManage/Stock/Index' //试剂管理�
 import ReagentManage from '@/page/mainContent/ReagentManage/ReagentManage/Index' //试剂管理——试剂管理
 import StandBook from '@/page/mainContent/ReagentManage/StandBook/Index' //试剂管理——试剂台账
 import Examine from '@/page/mainContent/Examine/Index' //审批
+import WantChange from '@/page/mainContent/ChangeManage/WantChange/Index' //我要变更
+
 
 // **************登录后访问的路由**********
 export default [
@@ -195,5 +197,10 @@ export default [
         name: 'Examine',
         meta: {title: '审批'},
         component: Examine
+    }, {
+        path: 'WantChange',
+        name: 'WantChange',
+        meta: {title: '我要变更'},
+        component: WantChange
     },
 ]

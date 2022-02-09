@@ -1,8 +1,7 @@
 <template>
     <div class="app-container Organization">
         <div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 200px) !important"></div>
-			<div class="addNew" style="width: 200px !important">
+			<div class="addNew">
                 <span @click="addOrganization()"><i class="el-icon-circle-plus-outline"></i> 新建组织架构</span>
 			</div>
 		</div>

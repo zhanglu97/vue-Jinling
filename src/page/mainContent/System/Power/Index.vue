@@ -1,29 +1,33 @@
 <template>
     <div class="app-container Power">
         <!-- 头部搜索 -->
-        <div class="Search_Top_Input">
-            <div class="search_list" style="width: calc(100% - 100px) !important">
-                <div class="input_flex">
-                    <el-input clearable v-model="searchInput1" placeholder="部门"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-input clearable v-model="searchInput2" placeholder="角色"></el-input>
-                </div>
-                <div class="input_flex">
-                    <el-select clearable v-model="searchInput3" placeholder="状态">
-                        <el-option label="正常" value="正常"></el-option>
-                        <el-option label="停用" value="停用"></el-option>
-                    </el-select>
-                </div>
-                <div class="input_flex search">
-                    <span class="zll-search">搜索</span>
-                    <span class="zll-search-reset" @click="searchReset()">重置</span>
+        <div class="Search_Top_Part">
+            <div class="search_list" >
+                <div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchInput1" placeholder="部门"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-input clearable v-model="searchInput2" placeholder="角色"></el-input>
+                    </div>
+                    <div class="input_flex">
+                        <el-select clearable v-model="searchInput3" placeholder="状态">
+                            <el-option label="正常" value="正常"></el-option>
+                            <el-option label="停用" value="停用"></el-option>
+                        </el-select>
+                    </div>
                 </div>
             </div>
-			<div class="addNew" style="width: 100px !important">
-                <span @click="addPower()"><i class="el-icon-circle-plus-outline"></i> 新建角色</span>
-			</div>
-		</div>
+            <div class="search_bt">
+                <span class="zll-search" @click="getTableList">搜索</span>
+                <span class="zll-search-reset" @click="searchReset()">重置</span>
+            </div>
+        </div>
+        <div class="Search_Top_Input">
+            <div class="addNew">
+                <span @click="addPower()"><i class="el-icon-circle-plus-outline"></i> 新增</span>
+            </div>
+        </div>
         <!-- table -->
         <sys-table  
             :isMultipleSelection="false" 
